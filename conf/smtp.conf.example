@@ -1,0 +1,6 @@
+[smtp]
+host =                  smtp.example.com
+user =                  simplecrm@example.com
+password =              password
+ssl =                   true
+port =                  465

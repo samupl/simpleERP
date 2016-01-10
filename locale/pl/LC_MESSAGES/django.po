@@ -1,0 +1,296 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-10 20:30+0100\n"
+"PO-Revision-Date: 2016-01-10 20:29+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.5\n"
+
+#: apps/contacts/app_config.py:7 apps/contacts/models.py:110
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: apps/contacts/models.py:11 apps/contacts/models.py:57
+msgid "Company name"
+msgstr "Nazwa firmy"
+
+#: apps/contacts/models.py:12 apps/contacts/models.py:58
+msgid "NIP"
+msgstr "NIP"
+
+#: apps/contacts/models.py:13 apps/contacts/models.py:59
+msgid "REGON"
+msgstr "REGON"
+
+#: apps/contacts/models.py:16 apps/contacts/models.py:62
+msgid "City"
+msgstr "Miejscowość"
+
+#: apps/contacts/models.py:17 apps/contacts/models.py:63
+msgid "Street"
+msgstr "Ulica"
+
+#: apps/contacts/models.py:18 apps/contacts/models.py:64
+msgid "Postal code"
+msgstr "Kod pocztowy"
+
+#: apps/contacts/models.py:19 apps/contacts/models.py:65
+msgid "Country"
+msgstr "Kraj"
+
+#: apps/contacts/models.py:37 apps/contacts/models.py:47
+msgid "Company"
+msgstr "Firma"
+
+#: apps/contacts/models.py:38
+msgid "Companies"
+msgstr "Firmy"
+
+#: apps/contacts/models.py:46
+msgid "Private person"
+msgstr "Osoba prywatna"
+
+#: apps/contacts/models.py:50
+msgid "Type"
+msgstr "Typ"
+
+#: apps/contacts/models.py:53
+msgid "First name"
+msgstr "Imię"
+
+#: apps/contacts/models.py:54
+msgid "Last name"
+msgstr "Nazwisko"
+
+#: apps/contacts/models.py:109
+msgid "Contact"
+msgstr "Kontakt"
+
+#: apps/invoices/admin.py:21
+#| msgid "Issuer"
+msgid "Issued"
+msgstr "Wystawiona"
+
+#: apps/invoices/app_config.py:7 apps/invoices/models.py:166
+msgid "Invoices"
+msgstr "Faktury"
+
+#: apps/invoices/models.py:25
+msgid "Numbered monthly"
+msgstr "Numeracja miesięczna"
+
+#: apps/invoices/models.py:26
+msgid "Numbered yearly"
+msgstr "Numeracja roczna"
+
+#: apps/invoices/models.py:29
+msgid "Series name"
+msgstr "Nazwa serii"
+
+#: apps/invoices/models.py:30
+msgid "Series pattern"
+msgstr "Wzorzec serii"
+
+#: apps/invoices/models.py:31
+msgid "Mode"
+msgstr "Tryb"
+
+#: apps/invoices/models.py:61 apps/invoices/models.py:62
+msgid "Invoice series"
+msgstr "Seria faktur"
+
+#: apps/invoices/models.py:74
+msgid "Bank transfer"
+msgstr "Przelew bankowy"
+
+#: apps/invoices/models.py:75
+msgid "PayPal"
+msgstr "PayPal"
+
+#: apps/invoices/models.py:80
+msgid "Invoice internal number"
+msgstr "Wewnętrzny numer faktury"
+
+#: apps/invoices/models.py:81 apps/invoices/models.py:83
+#: apps/invoices/models.py:91
+msgid "If you leave this field blank, it will be filled in automatically."
+msgstr ""
+"Jeśli to pole będzie pozostawione puste, zostanie wypełnione automatycznie."
+
+#: apps/invoices/models.py:82
+msgid "Invoice number"
+msgstr "Numer faktury"
+
+#: apps/invoices/models.py:88 templates/invoices/invoice.html.py:87
+msgid "Issue date"
+msgstr "Data wystawienia"
+
+#: apps/invoices/models.py:89 templates/invoices/invoice.html.py:91
+msgid "Delivery date"
+msgstr "Data wykonania usługi"
+
+#: apps/invoices/models.py:90 templates/invoices/invoice.html.py:95
+msgid "Payment date"
+msgstr "Termin płatności"
+
+#: apps/invoices/models.py:94 apps/invoices/models.py:172
+#: templates/invoices/invoice.html:126
+msgid "Price net"
+msgstr "Cena netto"
+
+#: apps/invoices/models.py:95 apps/invoices/models.py:98
+msgid "The price will change automatically when you change an invoice position"
+msgstr ""
+"Koszt zmieni się automatycznie, gdy zmieniona zostanie dowolna pozycja na "
+"fakturze."
+
+#: apps/invoices/models.py:97
+msgid "Price gross"
+msgstr "Cena brutto"
+
+#: apps/invoices/models.py:100 templates/invoices/invoice.html.py:110
+msgid "Payment method"
+msgstr "Metoda płatności"
+
+#: apps/invoices/models.py:102 apps/invoices/models.py:165
+msgid "Invoice"
+msgstr "Faktura"
+
+#: apps/invoices/models.py:151
+msgid "Invoice already issued"
+msgstr "Faktura wystawiona"
+
+#: apps/invoices/models.py:153
+msgid "<a href=\"{}\">Issue this invoice</a>"
+msgstr "<a href=\"{}\">Wystaw fakturę</a>"
+
+#: apps/invoices/models.py:171
+msgid "Description"
+msgstr "Opis"
+
+#: apps/invoices/models.py:173
+msgid "Total net"
+msgstr "Razem netto"
+
+#: apps/invoices/models.py:174 templates/invoices/invoice.html.py:180
+msgid "Total gross"
+msgstr "Razem brutto"
+
+#: apps/invoices/models.py:176 templates/invoices/invoice.html.py:128
+msgid "Tax"
+msgstr "Podatek"
+
+#: apps/invoices/models.py:177 templates/invoices/invoice.html.py:125
+msgid "Count"
+msgstr "Ilość"
+
+#: apps/invoices/models.py:181
+msgid "This invoice is already issued, you cannot modify its positions now."
+msgstr "Ta faktura została już wystawiona, nie można edytować jej pozycji."
+
+#: apps/invoices/models.py:192
+msgid "Invoice position"
+msgstr "Pozycja na fakturze"
+
+#: apps/invoices/models.py:193
+msgid "Invoice positions"
+msgstr "Pozycje na fakturze"
+
+#: simpleERP/admin.py:6
+msgid "SimpleERP Admin site"
+msgstr "Panel administracyjny SimpleERP"
+
+#: simpleERP/admin.py:9
+msgid "SimpleERP Administration"
+msgstr "Administracja SimpleERP"
+
+#: simpleERP/admin.py:12
+msgid "SimpleERP administration"
+msgstr "Administracja SimpleERP"
+
+#: templates/invoices/invoice.html:27
+msgid "VAT Invoice"
+msgstr "Faktura VAT"
+
+#: templates/invoices/invoice.html:30
+msgid "no"
+msgstr "nr"
+
+#: templates/invoices/invoice.html:40
+msgid "Issuer"
+msgstr "Sprzedawca"
+
+#: templates/invoices/invoice.html:56
+msgid "Customer"
+msgstr "Nabywca"
+
+#: templates/invoices/invoice.html:78
+msgid "Date and issue place"
+msgstr "Data i miejsce wystawienia"
+
+#: templates/invoices/invoice.html:83
+msgid "Issue place"
+msgstr "Miejsce wystawienia"
+
+#: templates/invoices/invoice.html:105
+msgid "Information"
+msgstr "Informacje"
+
+#: templates/invoices/invoice.html:123
+msgid "#"
+msgstr "#"
+
+#: templates/invoices/invoice.html:124
+msgid "Service/asset name"
+msgstr "Nazwa towaru/usługi"
+
+#: templates/invoices/invoice.html:127
+msgid "Net value"
+msgstr "Wartość netto"
+
+#: templates/invoices/invoice.html:150
+msgid "Rate"
+msgstr "Stawka"
+
+#: templates/invoices/invoice.html:151
+msgid "Net"
+msgstr "Netto"
+
+#: templates/invoices/invoice.html:152
+msgid "VAT"
+msgstr "VAT"
+
+#: templates/invoices/invoice.html:153
+msgid "Gross"
+msgstr "Brutto"
+
+#: templates/invoices/invoice.html:175
+msgid "Total"
+msgstr "Łącznie"
+
+#: templates/invoices/invoice.html:185
+msgid "Say"
+msgstr "Słownie"
+
+#~ msgid "Dates"
+#~ msgstr "Daty"
+
+#~ msgid "Gross value"
+#~ msgstr "Wartość brutto"
+
+#~ msgid ""
+#~ "You have to either specify the net, or the gross price, or fill in both."
+#~ msgstr "Musisz podać kwotę netto lub brutto, lub obie naraz."

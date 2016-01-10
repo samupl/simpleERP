@@ -53,5 +53,12 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+# Jetbrains
+.idea/
+
 # PyBuilder
 target/
+db.sqlite3
+conf/*.conf
+upload/*
+!upload/README.md

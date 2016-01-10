@@ -1,0 +1,7 @@
+[database]
+engine =                django.db.backends.sqlite3
+name =                  simpleERP
+user =                  simpleERP
+password =	            password
+host =                  localhost
+

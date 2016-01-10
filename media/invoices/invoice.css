@@ -1,0 +1,97 @@
+body {
+    font-family: 'Helvetica Neue' !important;
+    font-weight: 200;
+}
+
+h1 {
+    background-color: #417690 !important;
+    color: #ffffff !important;
+    font-weight: normal;
+    padding: 20px 30px;
+}
+
+h1 small {
+    color: #ffffff !important;
+}
+
+.panel table tr td {
+    border-top: 0;
+    padding-top: 0;
+    margin-top: 0;
+    background-color: transparent !important;
+}
+
+.panel table {
+}
+
+.panel {
+    border-radius: 0;
+    border: 0;
+    background-color: #F2F2F2 !important;
+    border-bottom: 1px solid #DEDEDE !important;
+    box-shadow: 0;
+}
+
+.panel.header {
+    min-height: 210px;
+
+}
+.panel .panel-heading {
+    border-radius: 0;
+    background-color: #79AEC8 !important;
+    text-transform: uppercase;
+    font-weight: normal;
+    border: 0;
+    color: #ffffff !important;
+}
+
+.panel .panel-body {
+    border-top: 1px solid #DEDEDE !important;
+}
+
+table.positions {
+    border: 0;
+}
+
+table.positions tr th {
+    text-transform: uppercase;
+    font-weight: normal;
+    border: 0 !important;
+    background-color: #79AEC8 !important;
+    color: #ffffff !important;
+}
+table.positions tr td {
+    border: 0 !important;
+}
+
+table.positions tr.odd td {
+    background-color: #F2F2F2 !important;
+
+}
+
+table.positions tr.even td {
+    background-color: #E8E8E8 !important;
+    border-top: 1px solid #DEDEDE !important;
+    border-bottom: 1px solid #DEDEDE !important;
+}
+
+table tr.total td {
+    font-weight: bold;
+}
+
+table tr.total td h3 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.col-price {
+    width: 150px;
+}
+
+.col-count {
+    width: 100px;
+}
+
+.col-tax {
+    width: 100px;
+}
