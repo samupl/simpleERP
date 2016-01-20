@@ -5,6 +5,7 @@ from simpleERP.admin import configure_admin_site
 
 import apps.invoices.urls
 import apps.download.urls
+import apps.frontend.urls
 
 configure_admin_site(admin.site)
 
@@ -13,4 +14,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^invoices/', include(apps.invoices.urls, namespace='invoices')),
     url(r'^download/', include(apps.download.urls, namespace='download')),
+    url(r'^', include(apps.frontend.urls, namespace='frontend')),
 ]

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-10 20:30+0100\n"
-"PO-Revision-Date: 2016-01-10 20:29+0100\n"
+"POT-Creation-Date: 2016-01-10 20:36+0100\n"
+"PO-Revision-Date: 2016-01-10 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -80,11 +80,10 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #: apps/invoices/admin.py:21
-#| msgid "Issuer"
 msgid "Issued"
 msgstr "Wystawiona"
 
-#: apps/invoices/app_config.py:7 apps/invoices/models.py:166
+#: apps/invoices/app_config.py:7 apps/invoices/models.py:180
 msgid "Invoices"
 msgstr "Faktury"
 
@@ -146,7 +145,7 @@ msgstr "Data wykonania usługi"
 msgid "Payment date"
 msgstr "Termin płatności"
 
-#: apps/invoices/models.py:94 apps/invoices/models.py:172
+#: apps/invoices/models.py:94 apps/invoices/models.py:186
 #: templates/invoices/invoice.html:126
 msgid "Price net"
 msgstr "Cena netto"
@@ -165,11 +164,11 @@ msgstr "Cena brutto"
 msgid "Payment method"
 msgstr "Metoda płatności"
 
-#: apps/invoices/models.py:102 apps/invoices/models.py:165
+#: apps/invoices/models.py:102 apps/invoices/models.py:179
 msgid "Invoice"
 msgstr "Faktura"
 
-#: apps/invoices/models.py:151
+#: apps/invoices/models.py:151 apps/invoices/models.py:163
 msgid "Invoice already issued"
 msgstr "Faktura wystawiona"
 
@@ -177,35 +176,47 @@ msgstr "Faktura wystawiona"
 msgid "<a href=\"{}\">Issue this invoice</a>"
 msgstr "<a href=\"{}\">Wystaw fakturę</a>"
 
-#: apps/invoices/models.py:171
+#: apps/invoices/models.py:158
+msgid "Issue"
+msgstr "Wystaw"
+
+#: apps/invoices/models.py:165
+msgid "<a href=\"{}\" target=\"_blank\">Preview invoice</a>"
+msgstr "<a href=\"{}\" target=\"_blank\">Zobacz podgląd faktury</a>"
+
+#: apps/invoices/models.py:170
+msgid "Preview"
+msgstr "Podgląd"
+
+#: apps/invoices/models.py:185
 msgid "Description"
 msgstr "Opis"
 
-#: apps/invoices/models.py:173
+#: apps/invoices/models.py:187
 msgid "Total net"
 msgstr "Razem netto"
 
-#: apps/invoices/models.py:174 templates/invoices/invoice.html.py:180
+#: apps/invoices/models.py:188 templates/invoices/invoice.html.py:180
 msgid "Total gross"
 msgstr "Razem brutto"
 
-#: apps/invoices/models.py:176 templates/invoices/invoice.html.py:128
+#: apps/invoices/models.py:190 templates/invoices/invoice.html.py:128
 msgid "Tax"
 msgstr "Podatek"
 
-#: apps/invoices/models.py:177 templates/invoices/invoice.html.py:125
+#: apps/invoices/models.py:191 templates/invoices/invoice.html.py:125
 msgid "Count"
 msgstr "Ilość"
 
-#: apps/invoices/models.py:181
+#: apps/invoices/models.py:195
 msgid "This invoice is already issued, you cannot modify its positions now."
 msgstr "Ta faktura została już wystawiona, nie można edytować jej pozycji."
 
-#: apps/invoices/models.py:192
+#: apps/invoices/models.py:206
 msgid "Invoice position"
 msgstr "Pozycja na fakturze"
 
-#: apps/invoices/models.py:193
+#: apps/invoices/models.py:207
 msgid "Invoice positions"
 msgstr "Pozycje na fakturze"
 

@@ -147,6 +147,9 @@ class Invoice(models.Model):
 
     @property
     def issue_link(self):
+        if not self.pk:
+            return ''
+
         if self.issued:
             return _('Invoice already issued')
         return mark_safe(
@@ -157,8 +160,24 @@ class Invoice(models.Model):
 
     issue_link.fget.short_description = _('Issue')
 
-    def issue(self):
-        pass
+    @property
+    def preview_link(self):
+        if not self.pk:
+            return ''
+
+        if self.issued:
+            return _('Invoice already issued')
+        return mark_safe(
+            _('<a href="{}" target="_blank">Preview invoice</a>').format(
+                reverse('invoices:render_invoice', args=[self.pk])
+            )
+        )
+
+    preview_link.fget.short_description = _('Preview')
+
+    @property
+    def payment_method_verbose(self):
+        return self.PAYMENTS[self.payment_method]
 
     def __str__(self):
         return self.invoice_number

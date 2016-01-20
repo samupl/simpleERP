@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% verbatim %}
+
+        {{ test }}
+
+        <input type="text" ng-model="TestModel">
+        <p>{{ TestModel }}</p>
+    {% endverbatim %}
+{% endblock %}

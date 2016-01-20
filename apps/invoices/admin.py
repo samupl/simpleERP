@@ -12,7 +12,7 @@ class InvoiceAdmin(admin.ModelAdmin):
     list_display = ['invoice_number', 'issued_for', 'issued_by', 'date_issued', 'date_delivered', 'date_payment',
                     'money_net', 'money_gross', 'get_issued']
     search_fields = ['issued_for']
-    readonly_fields = ['money_net', 'money_gross', 'issue_link']
+    readonly_fields = ['money_net', 'money_gross', 'issue_link', 'preview_link']
     buttons = []
 
     def get_issued(self, obj):

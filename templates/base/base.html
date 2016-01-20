@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+<html ng-app="SimpleERP">
+    <head>
+        <script type="text/javascript" src="{% static 'angularjs/angular.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'simpleerp/SimpleERP.js' %}"></script>
+    </head>
+
+    <body ng-controller="ExampleController">
+        {% block content %}{% endblock %}
+    </body>
+</html>
