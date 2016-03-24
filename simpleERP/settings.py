@@ -30,7 +30,7 @@ DEBUG = False
 if 'DEBUG' in os.environ and os.environ['DEBUG'] == 'True':
     DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
