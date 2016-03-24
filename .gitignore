@@ -62,3 +62,6 @@ target/
 conf/*.conf
 upload/*
 !upload/README.md
+
+public/*
+!public/static/README.md

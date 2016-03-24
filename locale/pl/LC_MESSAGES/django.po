@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-10 20:36+0100\n"
+"POT-Creation-Date: 2016-03-24 10:33+0100\n"
 "PO-Revision-Date: 2016-01-10 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,63 +19,67 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.5\n"
 
-#: apps/contacts/app_config.py:7 apps/contacts/models.py:110
+#: apps/contacts/app_config.py:7 apps/contacts/models.py:113
 msgid "Contacts"
 msgstr "Kontakty"
 
-#: apps/contacts/models.py:11 apps/contacts/models.py:57
+#: apps/contacts/models.py:11 apps/contacts/models.py:60
 msgid "Company name"
 msgstr "Nazwa firmy"
 
-#: apps/contacts/models.py:12 apps/contacts/models.py:58
+#: apps/contacts/models.py:12 apps/contacts/models.py:61
 msgid "NIP"
 msgstr "NIP"
 
-#: apps/contacts/models.py:13 apps/contacts/models.py:59
+#: apps/contacts/models.py:13 apps/contacts/models.py:62
 msgid "REGON"
 msgstr "REGON"
 
-#: apps/contacts/models.py:16 apps/contacts/models.py:62
+#: apps/contacts/models.py:16 apps/contacts/models.py:65
 msgid "City"
 msgstr "Miejscowość"
 
-#: apps/contacts/models.py:17 apps/contacts/models.py:63
+#: apps/contacts/models.py:17 apps/contacts/models.py:66
 msgid "Street"
 msgstr "Ulica"
 
-#: apps/contacts/models.py:18 apps/contacts/models.py:64
+#: apps/contacts/models.py:18 apps/contacts/models.py:67
 msgid "Postal code"
 msgstr "Kod pocztowy"
 
-#: apps/contacts/models.py:19 apps/contacts/models.py:65
+#: apps/contacts/models.py:19 apps/contacts/models.py:68
 msgid "Country"
 msgstr "Kraj"
 
-#: apps/contacts/models.py:37 apps/contacts/models.py:47
+#: apps/contacts/models.py:22 templates/invoices/invoice.html.py:115
+msgid "Bank account number"
+msgstr "Numer konta bankowego"
+
+#: apps/contacts/models.py:40 apps/contacts/models.py:50
 msgid "Company"
 msgstr "Firma"
 
-#: apps/contacts/models.py:38
+#: apps/contacts/models.py:41
 msgid "Companies"
 msgstr "Firmy"
 
-#: apps/contacts/models.py:46
+#: apps/contacts/models.py:49
 msgid "Private person"
 msgstr "Osoba prywatna"
 
-#: apps/contacts/models.py:50
+#: apps/contacts/models.py:53
 msgid "Type"
 msgstr "Typ"
 
-#: apps/contacts/models.py:53
+#: apps/contacts/models.py:56
 msgid "First name"
 msgstr "Imię"
 
-#: apps/contacts/models.py:54
+#: apps/contacts/models.py:57
 msgid "Last name"
 msgstr "Nazwisko"
 
-#: apps/contacts/models.py:109
+#: apps/contacts/models.py:112
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -83,7 +87,7 @@ msgstr "Kontakt"
 msgid "Issued"
 msgstr "Wystawiona"
 
-#: apps/invoices/app_config.py:7 apps/invoices/models.py:180
+#: apps/invoices/app_config.py:7 apps/invoices/models.py:187
 msgid "Invoices"
 msgstr "Faktury"
 
@@ -145,8 +149,8 @@ msgstr "Data wykonania usługi"
 msgid "Payment date"
 msgstr "Termin płatności"
 
-#: apps/invoices/models.py:94 apps/invoices/models.py:186
-#: templates/invoices/invoice.html:126
+#: apps/invoices/models.py:94 apps/invoices/models.py:193
+#: templates/invoices/invoice.html:132
 msgid "Price net"
 msgstr "Cena netto"
 
@@ -164,59 +168,59 @@ msgstr "Cena brutto"
 msgid "Payment method"
 msgstr "Metoda płatności"
 
-#: apps/invoices/models.py:102 apps/invoices/models.py:179
+#: apps/invoices/models.py:102 apps/invoices/models.py:186
 msgid "Invoice"
 msgstr "Faktura"
 
-#: apps/invoices/models.py:151 apps/invoices/models.py:163
+#: apps/invoices/models.py:154 apps/invoices/models.py:169
 msgid "Invoice already issued"
 msgstr "Faktura wystawiona"
 
-#: apps/invoices/models.py:153
+#: apps/invoices/models.py:156
 msgid "<a href=\"{}\">Issue this invoice</a>"
 msgstr "<a href=\"{}\">Wystaw fakturę</a>"
 
-#: apps/invoices/models.py:158
+#: apps/invoices/models.py:161
 msgid "Issue"
 msgstr "Wystaw"
 
-#: apps/invoices/models.py:165
+#: apps/invoices/models.py:171
 msgid "<a href=\"{}\" target=\"_blank\">Preview invoice</a>"
 msgstr "<a href=\"{}\" target=\"_blank\">Zobacz podgląd faktury</a>"
 
-#: apps/invoices/models.py:170
+#: apps/invoices/models.py:176
 msgid "Preview"
 msgstr "Podgląd"
 
-#: apps/invoices/models.py:185
+#: apps/invoices/models.py:192
 msgid "Description"
 msgstr "Opis"
 
-#: apps/invoices/models.py:187
+#: apps/invoices/models.py:194
 msgid "Total net"
 msgstr "Razem netto"
 
-#: apps/invoices/models.py:188 templates/invoices/invoice.html.py:180
+#: apps/invoices/models.py:195 templates/invoices/invoice.html.py:186
 msgid "Total gross"
 msgstr "Razem brutto"
 
-#: apps/invoices/models.py:190 templates/invoices/invoice.html.py:128
+#: apps/invoices/models.py:197 templates/invoices/invoice.html.py:134
 msgid "Tax"
 msgstr "Podatek"
 
-#: apps/invoices/models.py:191 templates/invoices/invoice.html.py:125
+#: apps/invoices/models.py:198 templates/invoices/invoice.html.py:131
 msgid "Count"
 msgstr "Ilość"
 
-#: apps/invoices/models.py:195
+#: apps/invoices/models.py:202
 msgid "This invoice is already issued, you cannot modify its positions now."
 msgstr "Ta faktura została już wystawiona, nie można edytować jej pozycji."
 
-#: apps/invoices/models.py:206
+#: apps/invoices/models.py:213
 msgid "Invoice position"
 msgstr "Pozycja na fakturze"
 
-#: apps/invoices/models.py:207
+#: apps/invoices/models.py:214
 msgid "Invoice positions"
 msgstr "Pozycje na fakturze"
 
@@ -231,6 +235,14 @@ msgstr "Administracja SimpleERP"
 #: simpleERP/admin.py:12
 msgid "SimpleERP administration"
 msgstr "Administracja SimpleERP"
+
+#: templates/frontend/menu.html:5
+msgid "Home"
+msgstr ""
+
+#: templates/frontend/menu.html:8
+msgid "Example View"
+msgstr ""
 
 #: templates/invoices/invoice.html:27
 msgid "VAT Invoice"
@@ -260,39 +272,39 @@ msgstr "Miejsce wystawienia"
 msgid "Information"
 msgstr "Informacje"
 
-#: templates/invoices/invoice.html:123
+#: templates/invoices/invoice.html:129
 msgid "#"
 msgstr "#"
 
-#: templates/invoices/invoice.html:124
+#: templates/invoices/invoice.html:130
 msgid "Service/asset name"
 msgstr "Nazwa towaru/usługi"
 
-#: templates/invoices/invoice.html:127
+#: templates/invoices/invoice.html:133
 msgid "Net value"
 msgstr "Wartość netto"
 
-#: templates/invoices/invoice.html:150
+#: templates/invoices/invoice.html:156
 msgid "Rate"
 msgstr "Stawka"
 
-#: templates/invoices/invoice.html:151
+#: templates/invoices/invoice.html:157
 msgid "Net"
 msgstr "Netto"
 
-#: templates/invoices/invoice.html:152
+#: templates/invoices/invoice.html:158
 msgid "VAT"
 msgstr "VAT"
 
-#: templates/invoices/invoice.html:153
+#: templates/invoices/invoice.html:159
 msgid "Gross"
 msgstr "Brutto"
 
-#: templates/invoices/invoice.html:175
+#: templates/invoices/invoice.html:181
 msgid "Total"
 msgstr "Łącznie"
 
-#: templates/invoices/invoice.html:185
+#: templates/invoices/invoice.html:191
 msgid "Say"
 msgstr "Słownie"
 

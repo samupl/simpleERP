@@ -18,6 +18,9 @@ class Company(models.Model):
     address_postcode = models.CharField(_('Postal code'), max_length=10, null=True, blank=True)
     address_country = models.CharField(_('Country'), max_length=512, null=True, blank=True, choices=COUNTRIES)
 
+    # Bank number
+    bank_account_number = models.CharField(_('Bank account number'), max_length=512, null=True, blank=True)
+
     @property
     def company(self):
         return '{company} (NIP: {nip}, REGON: {regon})'.format(

@@ -110,6 +110,12 @@
                                 <td>{% trans 'Payment method' %}</td>
                                 <td>{{ invoice.payment_method_verbose }}</td>
                             </tr>
+                            {% if invoice.issued_by.bank_account_number %}
+                                <tr>
+                                    <td>{% trans 'Bank account number' %}</td>
+                                    <td>{{ invoice.issued_by.bank_account_number }}</td>
+                                </tr>
+                            {{ invoice.issued_by.address_country_verbose }}
                         </table>
                     </div>
                 </div>
