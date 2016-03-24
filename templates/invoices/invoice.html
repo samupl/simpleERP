@@ -115,7 +115,7 @@
                                     <td>{% trans 'Bank account number' %}</td>
                                     <td>{{ invoice.issued_by.bank_account_number }}</td>
                                 </tr>
-                            {{ invoice.issued_by.address_country_verbose }}
+                            {% endif %}
                         </table>
                     </div>
                 </div>
