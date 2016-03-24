@@ -1,2 +1,6 @@
 Django==1.9.1
+django-countries==3.4.1
+pdfkit==0.5.0
 PyMySQL==0.6.7
+python-slownie==1.0
+wheel==0.24.0
