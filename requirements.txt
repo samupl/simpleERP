@@ -4,3 +4,4 @@ pdfkit==0.5.0
 PyMySQL==0.6.7
 python-slownie==1.0
 wheel==0.24.0
+django-sslify==0.2.7

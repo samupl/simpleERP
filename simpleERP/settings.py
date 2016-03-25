@@ -30,6 +30,9 @@ DEBUG = False
 if 'DEBUG' in os.environ and os.environ['DEBUG'] == 'True':
     DEBUG = True
 
+if DEBUG:
+    SSLIFY_DISABLE = True
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -51,6 +54,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'sslify.middleware.SSLifyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
