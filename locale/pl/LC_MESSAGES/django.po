@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-24 10:33+0100\n"
+"POT-Creation-Date: 2016-03-25 08:07+0100\n"
 "PO-Revision-Date: 2016-01-10 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,67 +19,67 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.5\n"
 
-#: apps/contacts/app_config.py:7 apps/contacts/models.py:113
+#: apps/contacts/app_config.py:7 apps/contacts/models.py:114
 msgid "Contacts"
 msgstr "Kontakty"
 
-#: apps/contacts/models.py:11 apps/contacts/models.py:60
+#: apps/contacts/models.py:11 apps/contacts/models.py:61
 msgid "Company name"
 msgstr "Nazwa firmy"
 
-#: apps/contacts/models.py:12 apps/contacts/models.py:61
+#: apps/contacts/models.py:12 apps/contacts/models.py:62
 msgid "NIP"
 msgstr "NIP"
 
-#: apps/contacts/models.py:13 apps/contacts/models.py:62
+#: apps/contacts/models.py:13 apps/contacts/models.py:63
 msgid "REGON"
 msgstr "REGON"
 
-#: apps/contacts/models.py:16 apps/contacts/models.py:65
+#: apps/contacts/models.py:16 apps/contacts/models.py:66
 msgid "City"
 msgstr "Miejscowość"
 
-#: apps/contacts/models.py:17 apps/contacts/models.py:66
+#: apps/contacts/models.py:17 apps/contacts/models.py:67
 msgid "Street"
 msgstr "Ulica"
 
-#: apps/contacts/models.py:18 apps/contacts/models.py:67
+#: apps/contacts/models.py:18 apps/contacts/models.py:68
 msgid "Postal code"
 msgstr "Kod pocztowy"
 
-#: apps/contacts/models.py:19 apps/contacts/models.py:68
-msgid "Country"
-msgstr "Kraj"
-
-#: apps/contacts/models.py:22 templates/invoices/invoice.html.py:115
+#: apps/contacts/models.py:23 templates/invoices/invoice.html.py:115
 msgid "Bank account number"
 msgstr "Numer konta bankowego"
 
-#: apps/contacts/models.py:40 apps/contacts/models.py:50
+#: apps/contacts/models.py:41 apps/contacts/models.py:51
 msgid "Company"
 msgstr "Firma"
 
-#: apps/contacts/models.py:41
+#: apps/contacts/models.py:42
 msgid "Companies"
 msgstr "Firmy"
 
-#: apps/contacts/models.py:49
+#: apps/contacts/models.py:50
 msgid "Private person"
 msgstr "Osoba prywatna"
 
-#: apps/contacts/models.py:53
+#: apps/contacts/models.py:54
 msgid "Type"
 msgstr "Typ"
 
-#: apps/contacts/models.py:56
+#: apps/contacts/models.py:57
 msgid "First name"
 msgstr "Imię"
 
-#: apps/contacts/models.py:57
+#: apps/contacts/models.py:58
 msgid "Last name"
 msgstr "Nazwisko"
 
-#: apps/contacts/models.py:112
+#: apps/contacts/models.py:69
+msgid "Country"
+msgstr "Kraj"
+
+#: apps/contacts/models.py:113
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -307,13 +307,3 @@ msgstr "Łącznie"
 #: templates/invoices/invoice.html:191
 msgid "Say"
 msgstr "Słownie"
-
-#~ msgid "Dates"
-#~ msgstr "Daty"
-
-#~ msgid "Gross value"
-#~ msgstr "Wartość brutto"
-
-#~ msgid ""
-#~ "You have to either specify the net, or the gross price, or fill in both."
-#~ msgstr "Musisz podać kwotę netto lub brutto, lub obie naraz."

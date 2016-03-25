@@ -1,9 +1,9 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext_lazy
 from django_countries import countries
+from django_countries.fields import CountryField
 
-
-COUNTRIES = [(name, code) for (name, code) in list(countries)]
+COUNTRIES = [(ugettext_lazy(name), code) for (name, code) in list(countries)]
 
 
 class Company(models.Model):
@@ -16,7 +16,8 @@ class Company(models.Model):
     address_city = models.CharField(_('City'), max_length=1024, null=True, blank=True)
     address_street = models.CharField(_('Street'), max_length=1024, null=True, blank=True)
     address_postcode = models.CharField(_('Postal code'), max_length=10, null=True, blank=True)
-    address_country = models.CharField(_('Country'), max_length=512, null=True, blank=True, choices=COUNTRIES)
+    # address_country = models.CharField(_('Country'), max_length=512, null=True, blank=True, choices=COUNTRIES)
+    address_country = CountryField(max_length=512, null=True, blank=True)
 
     # Bank number
     bank_account_number = models.CharField(_('Bank account number'), max_length=512, null=True, blank=True)

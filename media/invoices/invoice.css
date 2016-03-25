@@ -8,10 +8,12 @@ h1 {
     color: #ffffff !important;
     font-weight: normal;
     padding: 20px 30px;
+    font-size: 20px;
 }
 
 h1 small {
     color: #ffffff !important;
+    font-size: 16px;
 }
 
 .panel table tr td {
@@ -21,7 +23,12 @@ h1 small {
     background-color: transparent !important;
 }
 
-.panel table {
+.panel table tr td:first-child {
+    width: 180px;
+}
+
+.panel table.table {
+    margin-bottom: 0 !important;
 }
 
 .panel {
@@ -33,7 +40,7 @@ h1 small {
 }
 
 .panel.header {
-    min-height: 210px;
+    min-height: 190px;
 
 }
 .panel .panel-heading {
