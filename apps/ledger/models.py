@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import decimal
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -79,10 +80,10 @@ class LedgerEntry(models.Model):
         )
 
     def recount_totals(self):
-        if not self.income_total:
+        if not self.income_total or self.income_total == decimal.Decimal('0'):
             self.income_total = self.income_other + self.income_sold
 
-        if not self.cost_total:
+        if not self.cost_total or self.costs_total == decimal.Decimal('0'):
             self.costs_total = self.cost_salary + self.cost_other
 
     def _save_parents(self, cls, using, update_fields):
