@@ -80,11 +80,11 @@ class LedgerEntry(models.Model):
         )
 
     def recount_totals(self):
-        if not self.income_total or self.income_total == decimal.Decimal('0'):
+        if not self.income_total:
             self.income_total = self.income_other + self.income_sold
 
-        if not self.cost_total or self.costs_total == decimal.Decimal('0'):
-            self.costs_total = self.cost_salary + self.cost_other
+        if not self.cost_total:
+            self.cost_total = self.cost_salary + self.cost_other
 
     def _save_parents(self, cls, using, update_fields):
         self.recount_totals()
