@@ -52,7 +52,7 @@ class LedgerEntry(models.Model):
         max_digits=32, decimal_places=2, blank=True, default=0
     )
     cost_total = models.DecimalField(
-        _('Remuneration in cash and in kind'),
+        _('Total costs'),
         max_digits=32, decimal_places=2, blank=True, default=0,
         help_text=_(
             'If you leave this field blank, it will be filled '
