@@ -7,4 +7,5 @@ class LedgerAppConfig(AppConfig):
     verbose_name = _('Ledger')
 
     def ready(self):
-        from . import signals
+        pass
+        # from . import signals

@@ -84,3 +84,7 @@ class LedgerEntry(models.Model):
 
         if not self.cost_total:
             self.costs_total = self.cost_salary + self.cost_other
+
+    def _save_parents(self, cls, using, update_fields):
+        self.recount_totals()
+        super()._save_parents(cls, using, update_fields)
