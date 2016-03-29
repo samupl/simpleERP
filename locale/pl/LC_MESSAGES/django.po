@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-25 08:07+0100\n"
+"POT-Creation-Date: 2016-03-29 19:22+0200\n"
 "PO-Revision-Date: 2016-01-10 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -192,7 +192,7 @@ msgstr "<a href=\"{}\" target=\"_blank\">Zobacz podgląd faktury</a>"
 msgid "Preview"
 msgstr "Podgląd"
 
-#: apps/invoices/models.py:192
+#: apps/invoices/models.py:192 apps/ledger/models.py:18
 msgid "Description"
 msgstr "Opis"
 
@@ -224,6 +224,60 @@ msgstr "Pozycja na fakturze"
 msgid "Invoice positions"
 msgstr "Pozycje na fakturze"
 
+#: apps/ledger/models.py:12
+msgid "Date"
+msgstr "Data"
+
+#: apps/ledger/models.py:13
+#| msgid "Invoice number"
+msgid "Invoice/Receipt number"
+msgstr "Numer faktury/rachunku"
+
+#: apps/ledger/models.py:15
+#| msgid "Series name"
+msgid "Buyer name"
+msgstr "Nazwa nabywcy"
+
+#: apps/ledger/models.py:16
+msgid "Buyer address"
+msgstr "Adres nabywcy"
+
+#: apps/ledger/models.py:21
+msgid "Income from sold goods and services"
+msgstr "Wartość sprzedanych towarów i usług"
+
+#: apps/ledger/models.py:25
+msgid "Other income"
+msgstr "Pozostały przychód"
+
+#: apps/ledger/models.py:29
+msgid "Total income"
+msgstr "Całkowity przychód"
+
+#: apps/ledger/models.py:34
+msgid "The purchase of commercial goods and materials at purchase prices"
+msgstr "Zakup towarów handlowych i materiałów według cen zakupu"
+
+#: apps/ledger/models.py:38
+msgid "Incidental costs of purchase"
+msgstr "Koszty uboczne zakupu"
+
+#: apps/ledger/models.py:43 apps/ledger/models.py:51
+msgid "Remuneration in cash and in kind"
+msgstr "Wynagrodzenie w gotówce i naturze"
+
+#: apps/ledger/models.py:47
+msgid "Other costs"
+msgstr "Pozostałe koszty"
+
+#: apps/ledger/models.py:56
+msgid "Additional info (not required)"
+msgstr "Dodatkowe informacje (niewymagane)"
+
+#: apps/ledger/models.py:60
+msgid "Comments"
+msgstr "Uwagi"
+
 #: simpleERP/admin.py:6
 msgid "SimpleERP Admin site"
 msgstr "Panel administracyjny SimpleERP"
@@ -238,11 +292,11 @@ msgstr "Administracja SimpleERP"
 
 #: templates/frontend/menu.html:5
 msgid "Home"
-msgstr ""
+msgstr "Strona główna"
 
 #: templates/frontend/menu.html:8
 msgid "Example View"
-msgstr ""
+msgstr "Przykładowy widok"
 
 #: templates/invoices/invoice.html:27
 msgid "VAT Invoice"

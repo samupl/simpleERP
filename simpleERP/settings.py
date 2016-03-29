@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'apps.contacts',
     'apps.invoices',
     'apps.download',
+    'apps.ledger',
 )
 
 MIDDLEWARE_CLASSES = (
