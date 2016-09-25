@@ -2,10 +2,7 @@ import datetime
 
 import decimal
 
-import os
-
 import django.utils.timezone
-from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -63,8 +60,18 @@ class InvoiceSeries(models.Model):
 
 
 class Invoice(models.Model):
-    def generate_filename(self, *args):
-        return 'invoice_{}.pdf'.format(self.pk)
+    # Defined at the top, because one of the fields uses this method
+    def generate_filename(self, *_):
+        series_prefix = self.series.pattern.split('/')[0]
+        if not series_prefix:
+            return 'invoice_{}.pdf'.format(self.pk)
+
+        filename = '{series_prefix}_{month}_{year}'.format(
+            series_prefix=series_prefix,
+            month=self.date_issued.month,
+            year=self.date_issued.year
+        )
+        return filename
 
     PAYMENT_DATE_DEFAULT_DAYS = 14
     PAYMENT_BANK_TRANSFER = 0
@@ -77,40 +84,77 @@ class Invoice(models.Model):
 
     series = models.ForeignKey(InvoiceSeries, null=True, blank=True)
 
-    number = models.IntegerField(_('Invoice internal number'), blank=True,
-                                 help_text=_('If you leave this field blank, it will be filled in automatically.'))
-    invoice_number = models.CharField(_('Invoice number'), max_length=128, blank=True,
-                                      help_text=_('If you leave this field blank, it will be filled in automatically.'))
+    number = models.IntegerField(
+        _('Invoice internal number'), blank=True,
+        help_text=_(
+            'If you leave this field blank, it will be filled in '
+            'automatically.'
+        )
+    )
+    invoice_number = models.CharField(
+        _('Invoice number'), max_length=128, blank=True,
+        help_text=_(
+            'If you leave this field blank, it will be filled in '
+            'automatically.'
+        )
+    )
 
     issued_by = models.ForeignKey(Company)
     issued_for = models.ForeignKey(Contact)
 
-    date_issued = models.DateField(_('Issue date'), default=django.utils.timezone.now)
-    date_delivered = models.DateField(_('Delivery date'), default=django.utils.timezone.now)
-    date_payment = models.DateField(_('Payment date'), null=True, blank=True,
-                                    help_text=_('If you leave this field blank, it will be filled in automatically.'))
+    date_issued = models.DateField(
+        _('Issue date'),
+        default=django.utils.timezone.now
+    )
+    date_delivered = models.DateField(
+        _('Delivery date'),
+        default=django.utils.timezone.now
+    )
+    date_payment = models.DateField(
+        _('Payment date'), null=True, blank=True,
+        help_text=_(
+            'If you leave this field blank, it will be filled in '
+            'automatically.'
+        )
+    )
 
     money_net = models.DecimalField(
         _('Price net'), default=0, max_digits=32, decimal_places=2, blank=True,
-        help_text=_('The price will change automatically when you change an invoice position'))
+        help_text=_(
+            'The price will change automatically when you change an invoice '
+            'position'
+        )
+    )
     money_gross = models.DecimalField(
-        _('Price gross'), default=0, max_digits=32, decimal_places=2, blank=True,
-        help_text=_('The price will change automatically when you change an invoice position'))
+        _('Price gross'), default=0, max_digits=32, decimal_places=2,
+        blank=True, help_text=_(
+            'The price will change automatically when you change an invoice '
+            'position'
+        )
+    )
 
-    payment_method = models.IntegerField(_('Payment method'), default=PAYMENT_BANK_TRANSFER,
-                                         choices=list(PAYMENTS.items()))
-    invoice_pdf_file = models.FileField(_('Invoice'), null=True, blank=True,
-                                        upload_to=generate_filename)
+    payment_method = models.IntegerField(
+        _('Payment method'),
+        default=PAYMENT_BANK_TRANSFER,
+        choices=list(PAYMENTS.items())
+    )
+    invoice_pdf_file = models.FileField(
+        _('Invoice'), null=True, blank=True,
+        upload_to=generate_filename
+    )
 
     def save(self, *args, **kwargs):
         if not self.date_payment:
-            self.date_payment = self.date_issued + datetime.timedelta(days=self.PAYMENT_DATE_DEFAULT_DAYS)
+            self.date_payment = self.date_issued + datetime.timedelta(
+                days=self.PAYMENT_DATE_DEFAULT_DAYS)
 
         if not self.number:
-            self.number = self.series.generate_internal_number(date=self.date_issued)
+            self.number = self.series.generate_internal_number(
+                date=self.date_issued)
 
         if not self.invoice_number:
-            self.invoice_number = self.series.generate_number(date=self.date_issued, number=self.number)
+            self.invoice_number = self.series.generate_number(
+                date=self.date_issued, number=self.number)
 
         super().save(*args, **kwargs)
 
@@ -124,7 +168,10 @@ class Invoice(models.Model):
 
     @property
     def rendered_html(self):
-        return render_to_string('invoices/invoice.html', {'invoice': self, 'taxes': self.aggregated_taxes})
+        return render_to_string('invoices/invoice.html', {
+            'invoice': self,
+            'taxes': self.aggregated_taxes
+        })
 
     @property
     def aggregated_taxes(self):
@@ -190,16 +237,23 @@ class Invoice(models.Model):
 class InvoicePosition(models.Model):
     invoice = models.ForeignKey(Invoice)
     description = models.CharField(_('Description'), max_length=256)
-    money_net = models.DecimalField(_('Price net'), max_digits=32, decimal_places=2)
-    total_net = models.DecimalField(_('Total net'), max_digits=32, decimal_places=2, blank=True, default=0)
-    total_gross = models.DecimalField(_('Total gross'), max_digits=32, decimal_places=2, blank=True, default=0)
+    money_net = models.DecimalField(_('Price net'), max_digits=32,
+                                    decimal_places=2)
+    total_net = models.DecimalField(_('Total net'), max_digits=32,
+                                    decimal_places=2, blank=True, default=0)
+    total_gross = models.DecimalField(_('Total gross'), max_digits=32,
+                                      decimal_places=2, blank=True, default=0)
 
-    tax = models.DecimalField(_('Tax'), max_digits=10, decimal_places=4, blank=True)
+    tax = models.DecimalField(_('Tax'), max_digits=10, decimal_places=4,
+                              blank=True)
     count = models.IntegerField(_('Count'), default=1)
 
     def clean(self):
         if self.invoice.issued:
-            raise ValidationError(_('This invoice is already issued, you cannot modify its positions now.'))
+            raise ValidationError(_(
+                'This invoice is already issued, you cannot modify its '
+                'positions now.'
+            ))
 
     def save(self, *args, **kwargs):
         self.total_net = self.money_net * self.count

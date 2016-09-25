@@ -10,7 +10,10 @@ def download(request, file_name):
 
     try:
         with open(full_file_path, 'rb') as fd:
-            response = HttpResponse(content=fd.read(), content_type='application/force-download')
+            response = HttpResponse(
+                content=fd.read(),
+                content_type='application/force-download'
+            )
             response['Content-Disposition'] = 'attachment; filename="{}"'.format(smart_str(file_name))
             return response
     except IOError:
