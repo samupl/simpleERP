@@ -1,19 +1,16 @@
 body {
-    font-family: 'Helvetica Neue' !important;
-    font-weight: 200;
 }
 
 h1 {
-    background-color: #417690 !important;
-    color: #ffffff !important;
-    font-weight: normal;
-    padding: 20px 30px;
+    text-transform: uppercase;
     font-size: 20px;
+    margin-top: 0 !important;
+    color: #1976D2 !important;
 }
 
 h1 small {
-    color: #ffffff !important;
     font-size: 16px;
+    color: #1E88E5 !important;
 }
 
 .panel table tr td {
@@ -58,26 +55,41 @@ h1 small {
 
 table.positions {
     border: 0;
+    /*margin-top: 60px;*/
 }
 
+table#positions {
+    margin-top: -80px;
+}
+
+div.table-stripe {
+    margin-top: 50px;
+    height: 80px;
+    background-color: #F2F2F2 !important;
+}
 table.positions tr th {
     text-transform: uppercase;
-    font-weight: normal;
     border: 0 !important;
-    background-color: #79AEC8 !important;
-    color: #ffffff !important;
+    color: #333333 !important;
+    font-weight: bold;
+    background-color: #F2F2F2 !important;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 table.positions tr td {
     border: 0 !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #666666;
 }
 
 table.positions tr.odd td {
-    background-color: #F2F2F2 !important;
-
+    /*background-color: #F2F2F2 !important;*/
+    /*border-top: 1px solid #DEDEDE !important;*/
 }
 
 table.positions tr.even td {
-    background-color: #E8E8E8 !important;
+    background-color: #FFF !important;
     border-top: 1px solid #DEDEDE !important;
     border-bottom: 1px solid #DEDEDE !important;
 }
@@ -91,6 +103,20 @@ table tr.total td h3 {
     padding: 0 !important;
 }
 
+table.color-table tr td {
+    border: 0 !important;
+}
+table.color-table thead th {
+    color: #FFF !important;
+    background-color: #0D47A1 !important;
+    text-transform: uppercase;
+    border-bottom: 0 !important;
+}
+
+table.color-table tbody td {
+    background-color: #0D47A1 !important;
+    color: #FFF !important;
+}
 .col-price {
     width: 150px;
 }
@@ -101,4 +127,109 @@ table tr.total td h3 {
 
 .col-tax {
     width: 100px;
+}
+
+/* Remove paddings from body */
+body.container {
+    padding: 0 !important;
+}
+
+td.td-label {
+    padding-right: 15px;
+}
+
+.color-box {
+    background-color: #1976D2 !important;
+    color: #fff !important;
+}
+
+.color-box2 {
+    background-color: #0D47A1 !important;
+    color: #fff !important;
+}
+
+.container {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.container-vertical {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.text-muted {
+    color: #666666 !important;
+}
+
+.container {
+    width: auto !important;
+}
+
+.customer {
+    padding-top: 52px;
+    color: #666666 !important;
+}
+
+.issuer {
+    height: 185px;
+}
+
+.issuer-credentials {
+    color: #fff !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+table.table {
+    border: 0;
+}
+
+#total {
+    margin-top: 65px;
+}
+
+tr.total td h3,
+.text-white {
+    color: #ffffff !important;
+}
+
+#user-data {
+    margin-top: 65px;
+}
+
+#total hr {
+    border-color: #1565C0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#total table {
+    margin-bottom: 0;
+}
+
+#say {
+    margin-top: 15px;
+    color: #0D47A1 !important;
+}
+
+.outmargin {
+    margin-right: -20px !important;
+}
+
+#main {
+    height: 540px;
+}
+
+#payment-info {
+    margin-top: 200px;
+}
+#payment-info tr td {
+    color: #ffffff !important;
+}
+
+#payment-info tr td b {
+    color: #ffffff !important;
 }

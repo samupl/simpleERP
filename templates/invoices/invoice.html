@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
 {% load fs_static %}
 {% load i18n %}
 {% load polish_amount %}
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,122 +9,117 @@
 
         <meta name="pdfkit-page-size" content="A4" />
         <meta name="pdfkit-dpi" content="96" />
-        <meta name="pdfkit-margin-top" content="12px" />
-        <meta name="pdfkit-margin-left" content="12px" />
-        <meta name="pdfkit-margin-right" content="12px" />
-        <meta name="pdfkit-margin-bottom" content="12px" />
+        <meta name="pdfkit-margin-top" content="0px" />
+        <meta name="pdfkit-margin-left" content="0px" />
+        <meta name="pdfkit-margin-right" content="0px" />
+        <meta name="pdfkit-margin-bottom" content="0px" />
 
 
         <link rel="stylesheet" href="{% fs_static 'bootstrap/css/bootstrap.css' demo %}">
         <link rel="stylesheet" href="{% fs_static 'invoices/invoice.css' demo %}">
+        {% if demo %}
+            <link rel="stylesheet" href="{% fs_static 'invoices/invoice_demo.css' demo %}">
+        {% endif %}
     </head>
 
-    <body class="container">
+    <body>
 
-        <h1>
-            {% trans 'VAT Invoice' %}
-            <br>
-            <small>
-                {% trans 'no' %} {{ invoice.invoice_number }}
-            </small>
-        </h1>
-        <br>
+        <div class="row container container-vertical">
+            <div class="col-xs-8">
+                <table>
+                    <tr>
+                        <td class="td-label text-muted">{% trans 'Issue place' %}</td>
+                        <td class="text-muted">{{ invoice.issued_by.address_city }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-label text-muted">{% trans 'Issue date' %}</td>
+                        <td class="text-muted">{{ invoice.date_issued }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-label text-muted">{% trans 'Delivery date' %}</td>
+                        <td class="text-muted">{{ invoice.date_delivered }}</td>
+                    </tr>
+                    <tr>
+                        <td class="td-label text-muted">{% trans 'Payment date' %}</td>
+                        <td class="text-muted">{{ invoice.date_payment }}</td>
+                    </tr>
+                </table>
+            </div>
 
-        <div class="row">
-            <div class="col-xs-6">
-                {# Issuer #}
-                <div class="panel panel-default header">
-                    <div class="panel-heading">
-                        {% trans 'Issuer' %}
+            <div class="col-xs-4">
+                <img src="{% fs_static 'invoices/logo.svg' demo %}" class="pull-right outmargin">
+            </div>
+        </div>
+
+        <div class="row" id="user-data">
+            <div class="col-xs-8">
+                <div class="container">
+                    <h1>{% trans 'VAT Invoice' %} <small>{% trans 'no' %} {{ invoice.invoice_number }}</small></h1>
+
+                    <div class="customer">
+                        <table>
+                            <tr>
+                                <td class="td-label text-muted text-uppercase">
+                                    <b>{% trans 'Customer' %}</b>
+                                </td>
+                                <td class="text-muted">
+                                    {% if invoice.issued_for.is_company %}
+                                        {{ invoice.issued_for.company_name }}
+                                    {% else %}
+                                        {{ invoice.issued_for.person_first_name }} {{ invoice.issued_for.person_last_name }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% if invoice.issued_for.is_company %}
+                                <tr>
+                                    <td class="td-label text-muted text-uppercase"><b>NIP</b></td>
+                                    <td class="text-muted">{{ invoice.issued_for.company_nip }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-label text-muted text-uppercase"><b>REGON</b></td>
+                                    <td class="text-muted">{{ invoice.issued_for.company_regon }}</td>
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <td class="td-label text-muted text-uppercase"><b>{% trans 'Address' %}</b></td>
+                                <td class="text-muted">
+                                    {{ invoice.issued_for.address_street }},
+                                    {{ invoice.issued_for.address_postcode }} {{ invoice.issued_for.address_city }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-label text-muted text-uppercase"><b>{% trans 'Country' %}</b></td>
+                                <td class="text-muted">
+                                    {{ invoice.issued_by.address_country_verbose }}
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="panel-body">
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="container color-box text-right container-vertical issuer">
+                    <div class="issuer-credentials">
                         {{ invoice.issued_by.company_name }}<br>
                         NIP: {{ invoice.issued_by.company_nip }}<br>
                         REGON: {{ invoice.issued_by.company_regon }}<br>
                         {{ invoice.issued_by.address_street }},
                         {{ invoice.issued_by.address_postcode }} {{ invoice.issued_by.address_city }}<br>
                         {{ invoice.issued_by.address_country_verbose }}
-
-                    </div>
-                </div>
-
-                {# Buyer #}
-                <div class="panel panel-default header">
-                    <div class="panel-heading">
-                        {% trans 'Customer' %}
-                    </div>
-                    <div class="panel-body">
-                        {% if invoice.issued_for.is_company %}
-                            {{ invoice.issued_for.company_name }}<br>
-                            NIP: {{ invoice.issued_for.company_nip }}<br>
-                            REGON: {{ invoice.issued_for.company_regon }}<br>
-                        {% else %}
-                            {{ invoice.issued_for.person_first_name }} {{ invoice.issued_for.person_last_name }}<br>
-                        {% endif %}
-
-                        {{ invoice.issued_for.address_street }},
-                        {{ invoice.issued_for.address_postcode }} {{ invoice.issued_for.address_city }}<br>
-                        {{ invoice.issued_for.address_country_verbose }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-6">
-                {# Dates #}
-                <div class="panel panel-default header">
-                    <div class="panel-heading">
-                        {% trans 'Date and issue place' %}
-                    </div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td>{% trans 'Issue place' %}</td>
-                                <td>{{ invoice.issued_by.address_city }}</td>
-                            </tr>
-                            <tr>
-                                <td>{% trans 'Issue date' %}</td>
-                                <td>{{ invoice.date_issued }}</td>
-                            </tr>
-                            <tr>
-                                <td>{% trans 'Delivery date' %}</td>
-                                <td>{{ invoice.date_delivered }}</td>
-                            </tr>
-                            <tr>
-                                <td>{% trans 'Payment date' %}</td>
-                                <td>{{ invoice.date_payment }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                {# Info #}
-                <div class="panel panel-default header">
-                    <div class="panel-heading">
-                        {% trans 'Information' %}
-                    </div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <tr>
-                                <td>{% trans 'Payment method' %}</td>
-                                <td>{{ invoice.payment_method_verbose }}</td>
-                            </tr>
-                            {% if invoice.issued_by.bank_account_number %}
-                                <tr>
-                                    <td>{% trans 'Bank account number' %}</td>
-                                    <td>{{ invoice.issued_by.bank_account_number }}</td>
-                                </tr>
-                            {% endif %}
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
 
         <br>
-        <table class="table table-bordered positions">
+        <div id="main">
+            <div class="table-stripe"></div>
+            <div class="container">
+        <table class="table table-bordered positions" id="positions">
             <thead>
                 <tr>
-                    <th>{% trans '#' %}</th>
+{#                    <th>{% trans '#' %}</th>#}
                     <th>{% trans 'Service/asset name' %}</th>
                     <th class="col-count">{% trans 'Count' %}</th>
                     <th class="col-price">{% trans 'Price net' %}</th>
@@ -137,30 +130,50 @@
             <tbody>
                 {% for position in invoice.invoiceposition_set.all %}
                     <tr class="{% cycle 'odd' 'even' %}">
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ position.description }}</td>
-                        <td>{{ position.count }}</td>
-                        <td>{{ position.money_net }}</td>
-                        <td>{{ position.total_net }}</td>
-                        <td class="text-right">{% widthratio position.tax 1 100 %}%</td>
+{#                        <td><span class="text-muted">{{ forloop.counter }}</span></td>#}
+                        <td><span class="text-muted">{{ position.description }}</span></td>
+                        <td><span class="text-muted">{{ position.count }}</span></td>
+                        <td><span class="text-muted">{{ position.money_net }}</span></td>
+                        <td><span class="text-muted">{{ position.total_net }}</span></td>
+                        <td class="text-right"><span class="text-muted">{% widthratio position.tax 1 100 %}%</span></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        </div>
+        </div>
 
-        <div class="row">
-            <div class="col-xs-6 col-xs-offset-6">
-                <table class="table table-bordered positions">
-                    <thead>
+        <div id="total" class="row container color-box">
+            <div class="col-xs-6">
+                <table id="payment-info">
+                    <tr>
+                        <td class="td-label">
+                            <b>{% trans 'Payment method' %}</b>
+                        </td>
+                        <td>{{ invoice.payment_method_verbose }}</td>
+                    </tr>
+                    {% if invoice.issued_by.bank_account_number %}
                         <tr>
-                            <th>{% trans 'Rate' %}</th>
-                            <th>{% trans 'Net' %}</th>
-                            <th>{% trans 'VAT' %}</th>
-                            <th class="text-right">{% trans 'Gross' %}</th>
+                            <td class="td-label">
+                                <b>{% trans 'Bank account number' %}</b>
+                            </td>
+                            <td>{{ invoice.issued_by.bank_account_number }}</td>
                         </tr>
-                    </thead>
-
-                    <tbody>
+                    {% endif %}
+                </table>
+            </div>
+            <div class="col-xs-6">
+                <div class="color-box2 container-vertical container">
+                    <table class="table color-table">
+                        <thead>
+                            <tr>
+                                <th>{% trans 'Rate' %}</th>
+                                <th>{% trans 'Net' %}</th>
+                                <th>{% trans 'VAT' %}</th>
+                                <th class="text-right">{% trans 'Gross' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         {% for key,value in taxes.items %}
                             <tr class="{% cycle 'odd' 'even' %}">
                                 <td>{% widthratio key 1 100 %}%</td>
@@ -169,30 +182,25 @@
                                 <td class="text-right">{{ value.total_gross }}</td>
                             </tr>
                         {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                        </tbody>
+                    </table>
 
-        <div class="row">
-            <div class="col-xs-6 col-xs-offset-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        {% trans 'Total' %}
-                    </div>
-                    <div class="panel-body">
-                        <table class="table">
-                            <tr class="total">
-                                <td>{% trans 'Total gross' %}</td>
-                                <td class="text-right"><h3>{{ invoice.money_gross }} PLN</h3></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    {% trans 'Say' %}: {% polish_amount invoice.money_gross %}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    <hr>
+                    <table class="table color-table">
+                        <tr class="total">
+                            <td class="text-uppercase">
+                                <b class="text-white">{% trans 'Total gross' %}</b>
+                            </td>
+                            <td class="text-right">
+                                <h3>{{ invoice.money_gross }} PLN</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                {% trans 'Say' %}: {% polish_amount invoice.money_gross %}
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
