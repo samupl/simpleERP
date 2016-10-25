@@ -1,15 +1,16 @@
 body {
+    font-size: 11px !important;
 }
 
 h1 {
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 16px !important;
     margin-top: 0 !important;
     color: #1976D2 !important;
 }
 
 h1 small {
-    font-size: 16px;
+    font-size: 13px;
     color: #1E88E5 !important;
 }
 
@@ -75,7 +76,9 @@ table.positions tr th {
     background-color: #F2F2F2 !important;
     padding-top: 30px;
     padding-bottom: 30px;
+    font-size: 11px !important;
 }
+
 table.positions tr td {
     border: 0 !important;
     padding-top: 15px;
@@ -101,6 +104,7 @@ table tr.total td {
 table tr.total td h3 {
     margin: 0 !important;
     padding: 0 !important;
+    font-size: 16px !important;
 }
 
 table.color-table tr td {
@@ -117,16 +121,21 @@ table.color-table tbody td {
     background-color: #0D47A1 !important;
     color: #FFF !important;
 }
+
+.col-price-value {
+    width: 130px !important;
+}
+
 .col-price {
-    width: 150px;
+    width: 100px !important;
 }
 
 .col-count {
-    width: 100px;
+    width: 50px !important;
 }
 
 .col-tax {
-    width: 100px;
+    width: 50px !important;
 }
 
 /* Remove paddings from body */
@@ -149,13 +158,13 @@ td.td-label {
 }
 
 .container {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .container-vertical {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .text-muted {
@@ -172,7 +181,8 @@ td.td-label {
 }
 
 .issuer {
-    height: 185px;
+    height: 155px;
+    margin-right: -1px;
 }
 
 .issuer-credentials {
@@ -197,13 +207,17 @@ tr.total td h3,
 }
 
 #user-data {
-    margin-top: 65px;
+    margin-top: 45px;
 }
 
 #total hr {
     border-color: #1565C0;
     margin-top: 10px;
     margin-bottom: 10px;
+    border-bottom: 0 !important;
+    border-top-width: 1px !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
 }
 
 #total table {
@@ -220,16 +234,22 @@ tr.total td h3,
 }
 
 #main {
-    height: 540px;
+    height: 350px;
 }
 
 #payment-info {
-    margin-top: 200px;
+    margin-top: 150px !important;
 }
+
 #payment-info tr td {
     color: #ffffff !important;
+    font-size: 10px !important;
 }
 
 #payment-info tr td b {
     color: #ffffff !important;
+}
+
+img#logo {
+    width: 230px;
 }

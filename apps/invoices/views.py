@@ -13,7 +13,10 @@ pdfkit_options = {
     'margin-right': '0px',
     'margin-bottom': '0px',
     'margin-left': '0px',
+    'page-height': '297mm',
+    'page-width': '212mm',
     'encoding': "UTF-8",
+    'dpi': '300',
 }
 
 
