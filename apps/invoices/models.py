@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Max, Sum, F
+from django.db.models import Q
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -235,7 +236,10 @@ class Invoice(models.Model):
 
 
 class InvoicePosition(models.Model):
-    invoice = models.ForeignKey(Invoice)
+    invoice = models.ForeignKey(
+        Invoice,
+        limit_choices_to={'invoice_pdf_file': ''}
+    )
     description = models.CharField(_('Description'), max_length=256)
     money_net = models.DecimalField(_('Price net'), max_digits=32,
                                     decimal_places=2)
