@@ -8,11 +8,17 @@ class InvoiceSeriesAdmin(admin.ModelAdmin):
     list_display = ['name', 'pattern', 'mode']
 
 
+class InvoicePositionInline(admin.TabularInline):
+    model = InvoicePosition
+    extra = 1
+
+
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = ['invoice_number', 'issued_for', 'issued_by', 'date_issued', 'date_delivered', 'date_payment',
                     'money_net', 'money_gross', 'get_issued']
     search_fields = ['issued_for']
     readonly_fields = ['money_net', 'money_gross', 'issue_link', 'preview_link']
+    inlines = [InvoicePositionInline]
     buttons = []
 
     def get_issued(self, obj):
