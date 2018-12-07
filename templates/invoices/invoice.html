@@ -28,19 +28,19 @@
     <div class="col-xs-8">
         <table>
             <tr>
-                <td class="td-label text-muted">{% trans 'Issue place' %}</td>
+                <td class="td-label text-muted">{% trans 'Issue place' %} <span class="text-muted"> / Issue place</span></td>
                 <td class="text-muted">{{ invoice.issued_by.address_city }}</td>
             </tr>
             <tr>
-                <td class="td-label text-muted">{% trans 'Issue date' %}</td>
+                <td class="td-label text-muted">{% trans 'Issue date' %} <span class="text-muted">/ Issue date</span></td>
                 <td class="text-muted">{{ invoice.date_issued }}</td>
             </tr>
             <tr>
-                <td class="td-label text-muted">{% trans 'Delivery date' %}</td>
+                <td class="td-label text-muted">{% trans 'Delivery date' %} <span class="text-muted">/ Delivery date</span></td>
                 <td class="text-muted">{{ invoice.date_delivered }}</td>
             </tr>
             <tr>
-                <td class="td-label text-muted">{% trans 'Payment date' %}</td>
+                <td class="td-label text-muted">{% trans 'Payment date' %} <span class="text-muted">/ Payment date</span></td>
                 <td class="text-muted">{{ invoice.date_payment }}</td>
             </tr>
         </table>
@@ -61,6 +61,7 @@
                     <tr>
                         <td class="td-label text-muted text-uppercase">
                             <b>{% trans 'Customer' %}</b>
+                            <span class="text-muted"> / Customer</span>
                         </td>
                         <td class="text-muted">
                             {% if invoice.issued_for.is_company %}
@@ -81,14 +82,20 @@
                         </tr>
                     {% endif %}
                     <tr>
-                        <td class="td-label text-muted text-uppercase"><b>{% trans 'Address' %}</b></td>
+                        <td class="td-label text-muted text-uppercase">
+                          <b>{% trans 'Address' %}</b>
+                          <span class="text-muted">/ Address</span>
+                        </td>
                         <td class="text-muted">
                             {{ invoice.issued_for.address_street }},
                             {{ invoice.issued_for.address_postcode }} {{ invoice.issued_for.address_city }}
                         </td>
                     </tr>
                     <tr>
-                        <td class="td-label text-muted text-uppercase"><b>{% trans 'Country' %}</b></td>
+                        <td class="td-label text-muted text-uppercase">
+                          <b>{% trans 'Country' %}</b>
+                          <span class="text-muted">/ Country</span>
+                        </td>
                         <td class="text-muted">
                             {{ invoice.issued_by.address_country_verbose }}
                         </td>
@@ -119,12 +126,26 @@
         <table class="table table-bordered positions" id="positions">
             <thead>
             <tr>
-                {#                    <th>{% trans '#' %}</th>#}
-                <th>{% trans 'Service/asset name' %}</th>
-                <th class="col-count">{% trans 'Count' %}</th>
-                <th class="col-price">{% trans 'Price net' %}</th>
-                <th class="col-price-value">{% trans 'Net value' %}</th>
-                <th class="col-tax text-right">{% trans 'Tax' %}</th>
+                <th>
+                  {% trans 'Service/asset name' %}<br>
+                  <small class="text-muted">Service/asset name</small>
+                </th>
+                <th class="col-count">
+                  {% trans 'Count' %}<br>
+                  <small class="text-muted">Count</small>
+                </th>
+                <th class="col-price">
+                  {% trans 'Price net' %}<br>
+                  <small class="text-muted">Price net</small>
+                </th>
+                <th class="col-price-value">
+                  {% trans 'Net value' %}<br>
+                  <small class="text-muted">Net value</small>
+                </th>
+                <th class="col-tax text-right">
+                  {% trans 'Tax' %}<br>
+                  <small class="text-muted">Tax</small>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -148,17 +169,56 @@
         <table id="payment-info">
             <tr>
                 <td class="td-label">
-                    <b>{% trans 'Payment method' %}</b>
+                    <b>{% trans 'Payment method' %}</b><br>
+                    <small class="text-muted">Payment method</small>
                 </td>
                 <td>{{ invoice.payment_method_verbose }}</td>
             </tr>
-            {% if invoice.issued_by.bank_account_number %}
+            {% if invoice.bank_account %}
+              {% if invoice.bank_account.bank_account_number %}
                 <tr>
                     <td class="td-label">
-                        <b>{% trans 'Bank account number' %}</b>
+                        <b>{% trans 'Bank Account Number' %}</b><br>
+                        <small class="text-muted">Bank Account Number</small>
                     </td>
-                    <td>{{ invoice.issued_by.bank_account_number }}</td>
+                    <td>{{ invoice.bank_account.bank_account_number }}</td>
                 </tr>
+              {% endif %}
+              {% if invoice.bank_account.iban %}
+                <tr>
+                    <td class="td-label">
+                        <b>{% trans 'IBAN' %}</b>
+                    </td>
+                    <td>{{ invoice.bank_account.iban }}</td>
+                </tr>
+              {% endif %}
+              {% if invoice.bank_account.swift %}
+                <tr>
+                    <td class="td-label">
+                        <b>{% trans 'SWIFT Code' %}</b><br>
+                        <small class="text-muted">Swift Code</small>
+                    </td>
+                    <td>{{ invoice.bank_account.swift }}</td>
+                </tr>
+              {% endif %}
+              {% if invoice.bank_account.bank_name %}
+                <tr>
+                    <td class="td-label">
+                        <b>{% trans 'Bank Name' %}</b><br>
+                        <small class="text-muted">Bank Name</small>
+                    </td>
+                    <td>{{ invoice.bank_account.bank_name }}</td>
+                </tr>
+              {% endif %}
+              {% if invoice.bank_account.bank_branch %}
+                <tr>
+                    <td class="td-label">
+                        <b>{% trans 'Bank Branch' %}</b><br>
+                        <small class="text-muted">Brank Branch</small>
+                    </td>
+                    <td>{{ invoice.bank_account.bank_branch }}</td>
+                </tr>
+              {% endif %}
             {% endif %}
         </table>
     </div>
@@ -167,10 +227,22 @@
             <table class="table color-table">
                 <thead>
                 <tr>
-                    <th>{% trans 'Rate' %}</th>
-                    <th>{% trans 'Net' %}</th>
-                    <th>{% trans 'VAT' %}</th>
-                    <th class="text-right">{% trans 'Gross' %}</th>
+                    <th>
+                      {% trans 'Rate' %}<br>
+                      <small class="text-muted">Rate</small>
+                    </th>
+                    <th>
+                      {% trans 'Net' %}<br>
+                      <small class="text-muted">Net</small>
+                    </th>
+                    <th>
+                      {% trans 'VAT' %}<br>
+                      <small class="text-muted">VAT</small>
+                    </th>
+                    <th class="text-right">
+                      {% trans 'Gross' %}<br>
+                      <small class="text-muted">Gross</small>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -189,10 +261,13 @@
             <table class="table color-table">
                 <tr class="total">
                     <td class="text-uppercase">
-                        <b class="text-white">{% trans 'Total gross' %}</b>
+                        <b class="text-white">
+                          {% trans 'Total gross' %}<br>
+                          <small class="text-muted">Total gross</small>
+                        </b>
                     </td>
                     <td class="text-right">
-                        <h3>{{ invoice.money_gross }} PLN</h3>
+                        <h3>{{ invoice.money_gross }} {{ invoice.currency.code }}</h3>
                     </td>
                 </tr>
                 <tr>

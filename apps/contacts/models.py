@@ -16,11 +16,7 @@ class Company(models.Model):
     address_city = models.CharField(_('City'), max_length=1024, null=True, blank=True)
     address_street = models.CharField(_('Street'), max_length=1024, null=True, blank=True)
     address_postcode = models.CharField(_('Postal code'), max_length=10, null=True, blank=True)
-    # address_country = models.CharField(_('Country'), max_length=512, null=True, blank=True, choices=COUNTRIES)
     address_country = CountryField(max_length=512, null=True, blank=True)
-
-    # Bank number
-    bank_account_number = models.CharField(_('Bank account number'), max_length=512, null=True, blank=True)
 
     @property
     def company(self):
@@ -40,6 +36,41 @@ class Company(models.Model):
     class Meta:
         verbose_name = _('Company')
         verbose_name_plural = _('Companies')
+
+
+class CompanyBankAccount(models.Model):
+    slug = models.CharField(
+        _('Short name'),
+        max_length=16, unique=True,
+    )
+    company = models.ForeignKey(Company)
+    bank_account_number = models.CharField(
+        _('Bank account number'),
+        max_length=512, null=True, blank=True,
+    )
+    iban = models.CharField(
+        _('IBAN'),
+        max_length=512, null=True, blank=True,
+    )
+    swift = models.CharField(
+        _('SWIFT Code'),
+        max_length=512, null=True, blank=True,
+    )
+    bank_name = models.CharField(
+        _('Bank name'),
+        max_length=1024, null=True, blank=True,
+    )
+    bank_branch = models.CharField(
+        _('Bank branch'),
+        max_length=1024, null=True, blank=True,
+    )
+
+    class Meta:
+        verbose_name = _('Bank Account')
+        verbose_name_plural = _('Bank Accounts')
+
+    def __str__(self):
+        return self.slug
 
 
 class Contact(models.Model):

@@ -12,7 +12,25 @@ from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from apps.contacts.models import Company, Contact
+from apps.contacts.models import Company, Contact, CompanyBankAccount
+
+
+class Currency(models.Model):
+    code = models.CharField(
+        _('Code'),
+        unique=True, max_length=16
+    )
+    name = models.CharField(
+        _('Name'),
+        max_length=128,
+    )
+
+    class Meta:
+        verbose_name = _('Currency')
+        verbose_name_plural = _('Currencies')
+
+    def __str__(self):
+        return '{} - {}'.format(self.code, self.name)
 
 
 class InvoiceSeries(models.Model):
@@ -102,6 +120,7 @@ class Invoice(models.Model):
 
     issued_by = models.ForeignKey(Company)
     issued_for = models.ForeignKey(Contact)
+    bank_account = models.ForeignKey(CompanyBankAccount, null=True)
 
     date_issued = models.DateField(
         _('Issue date'),
@@ -133,7 +152,7 @@ class Invoice(models.Model):
             'position'
         )
     )
-
+    currency = models.ForeignKey(Currency, null=True)
     payment_method = models.IntegerField(
         _('Payment method'),
         default=PAYMENT_BANK_TRANSFER,

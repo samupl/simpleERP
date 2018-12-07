@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from apps.invoices.models import Invoice, InvoicePosition, InvoiceSeries
+from apps.invoices.models import Invoice, InvoicePosition, InvoiceSeries, \
+    Currency
 
 
 class InvoiceSeriesAdmin(admin.ModelAdmin):
@@ -35,7 +36,13 @@ class InvoicePositionAdmin(admin.ModelAdmin):
     readonly_fields = ['total_net', 'total_gross']
 
 
+
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display = ['code', 'name']
+
+
 # Register models in admin site
 admin.site.register(Invoice, InvoiceAdmin)
 admin.site.register(InvoiceSeries, InvoiceSeriesAdmin)
 admin.site.register(InvoicePosition, InvoicePositionAdmin)
+admin.site.register(Currency, CurrencyAdmin)

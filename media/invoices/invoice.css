@@ -60,12 +60,16 @@ table.positions {
 }
 
 table#positions {
-    margin-top: -80px;
+    margin-top: -90px;
+}
+
+table#positions .text-muted {
+    color: #adadad !important;
 }
 
 div.table-stripe {
     margin-top: 50px;
-    height: 80px;
+    height: 90px;
     background-color: #F2F2F2 !important;
 }
 table.positions tr th {
@@ -252,4 +256,12 @@ tr.total td h3,
 
 img#logo {
     width: 230px;
+}
+
+.td-label .text-muted {
+    color: #adadad !important;
+}
+
+.color-box .text-muted {
+    color: #9cadf7 !important;
 }
