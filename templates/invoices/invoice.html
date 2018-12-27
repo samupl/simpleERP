@@ -211,6 +211,15 @@
                     <td>{{ invoice.bank_account.swift }}</td>
                 </tr>
               {% endif %}
+              {% if invoice.bank_account.sorting_number %}
+                <tr>
+                    <td class="td-label">
+                        <b>{% trans 'Sort Code' %}</b><br>
+                        <small class="text-muted">Sort Code</small>
+                    </td>
+                    <td>{{ invoice.bank_account.sorting_number }}</td>
+                </tr>
+              {% endif %}
               {% if invoice.bank_account.bank_name %}
                 <tr>
                     <td class="td-label">
@@ -233,7 +242,7 @@
         </table>
     </div>
     <div class="col-xs-6">
-        <div class="color-box2 container-vertical container">
+        <div id="total-summary" class="color-box2 container-vertical container">
             <table class="table color-table">
                 <thead>
                 <tr>

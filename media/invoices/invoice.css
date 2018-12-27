@@ -242,7 +242,8 @@ tr.total td h3,
 }
 
 #payment-info {
-    margin-top: 30px !important;
+    margin-top: 30px;
+    margin-bottom: 30px !important;
 }
 
 #payment-info tr td {
@@ -264,4 +265,15 @@ img#logo {
 
 .color-box .text-muted {
     color: #7d7d7d !important;
+}
+
+#total-summary {
+    height: 260px;
+}
+
+#payment-info td {
+    vertical-align: top;
+}
+#payment-info .td-label {
+    width: 150px;
 }

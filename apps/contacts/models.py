@@ -56,6 +56,10 @@ class CompanyBankAccount(models.Model):
         _('SWIFT Code'),
         max_length=512, null=True, blank=True,
     )
+    sorting_number = models.CharField(
+        _('Sorting number'),
+        max_length=512, null=True, blank=True,
+    )
     bank_name = models.CharField(
         _('Bank name'),
         max_length=1024, null=True, blank=True,
