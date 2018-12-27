@@ -64,20 +64,20 @@ table#positions {
 }
 
 table#positions .text-muted {
-    color: #adadad !important;
+    color: #5e5e5e !important;
 }
 
 div.table-stripe {
     margin-top: 50px;
     height: 90px;
-    background-color: #F2F2F2 !important;
+    background-color: #e6e6e6 !important;
 }
 table.positions tr th {
     text-transform: uppercase;
     border: 0 !important;
     color: #333333 !important;
     font-weight: bold;
-    background-color: #F2F2F2 !important;
+    background-color: #e6e6e6 !important;
     padding-top: 30px;
     padding-bottom: 30px;
     font-size: 11px !important;
@@ -115,15 +115,15 @@ table.color-table tr td {
     border: 0 !important;
 }
 table.color-table thead th {
-    color: #FFF !important;
-    background-color: #0D47A1 !important;
+    color: #5e5e5e !important;
+    background-color: #d7d7d7 !important;
     text-transform: uppercase;
     border-bottom: 0 !important;
 }
 
 table.color-table tbody td {
-    background-color: #0D47A1 !important;
-    color: #FFF !important;
+    background-color: #d7d7d7 !important;
+    color: #5e5e5e !important;
 }
 
 .col-price-value {
@@ -152,13 +152,13 @@ td.td-label {
 }
 
 .color-box {
-    background-color: #1976D2 !important;
-    color: #fff !important;
+    background-color: #e6e6e6 !important;
+    color: #505050 !important;
 }
 
 .color-box2 {
-    background-color: #0D47A1 !important;
-    color: #fff !important;
+    background-color: #d7d7d7 !important;
+    color: #505050 !important;
 }
 
 .container {
@@ -172,7 +172,7 @@ td.td-label {
 }
 
 .text-muted {
-    color: #666666 !important;
+    color: #505050 !important;
 }
 
 .container {
@@ -190,7 +190,7 @@ td.td-label {
 }
 
 .issuer-credentials {
-    color: #fff !important;
+    color: #505050 !important;
 }
 
 .text-uppercase {
@@ -207,7 +207,7 @@ table.table {
 
 tr.total td h3,
 .text-white {
-    color: #ffffff !important;
+    color: #5e5e5e !important;
 }
 
 #user-data {
@@ -215,7 +215,7 @@ tr.total td h3,
 }
 
 #total hr {
-    border-color: #1565C0;
+    border-color: #5e5e5e;
     margin-top: 10px;
     margin-bottom: 10px;
     border-bottom: 0 !important;
@@ -230,7 +230,7 @@ tr.total td h3,
 
 #say {
     margin-top: 15px;
-    color: #0D47A1 !important;
+    color: #5e5e5e !important;
 }
 
 .outmargin {
@@ -242,16 +242,16 @@ tr.total td h3,
 }
 
 #payment-info {
-    margin-top: 150px !important;
+    margin-top: 30px !important;
 }
 
 #payment-info tr td {
-    color: #ffffff !important;
+    color: #5f5f5f !important;
     font-size: 10px !important;
 }
 
 #payment-info tr td b {
-    color: #ffffff !important;
+    color: #5f5f5f !important;
 }
 
 img#logo {
@@ -259,9 +259,9 @@ img#logo {
 }
 
 .td-label .text-muted {
-    color: #adadad !important;
+    color: #5f5f5f !important;
 }
 
 .color-box .text-muted {
-    color: #9cadf7 !important;
+    color: #7d7d7d !important;
 }

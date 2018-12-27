@@ -5,9 +5,9 @@ register = template.Library()
 
 
 @register.simple_tag
-def polish_amount(amount):
+def polish_amount(amount, fulls_unit, halves_unit):
     string = str(amount)
     fulls, halves = string.split('.')
-    fulls = slownie.slownie(fulls, unit=slownie.UNIT_ZLOTY)
-    halves = slownie.slownie(halves, unit=slownie.UNIT_GROSZ)
+    fulls = slownie.slownie(fulls, unit=fulls_unit)
+    halves = slownie.slownie(halves, unit=halves_unit)
     return '{}, {}'.format(fulls, halves)

@@ -3,6 +3,7 @@ import datetime
 import decimal
 
 import django.utils.timezone
+import requests
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -24,6 +25,34 @@ class Currency(models.Model):
         _('Name'),
         max_length=128,
     )
+    fulls_name_genitive = models.CharField(  # Dopełniacz
+        _('Fulls name (genitive)'),
+        max_length=128,
+    )
+    fulls_name_denominator = models.CharField(  # Mianownik
+        _('Fulls name (denominator)'),
+        max_length=128,
+    )
+    fulls_name_dative = models.CharField(  # Celownik
+        _('Fulls name (dative)'),
+        max_length=128,
+    )
+    halves_name_genitive = models.CharField(  # Dopełniacz
+        _('Halves name (genitive)'),
+        max_length=128,
+    )
+    halves_name_denominator = models.CharField(  # Mianownik
+        _('Halves name (denominator)'),
+        max_length=128,
+    )
+    halves_name_dative = models.CharField(  # Celownik
+        _('Halves name (dative)'),
+        max_length=128,
+    )
+    fetch_exchange_rate = models.BooleanField(
+        _('Fetch average exchange rate'),
+        default=False,
+    )
 
     class Meta:
         verbose_name = _('Currency')
@@ -31,6 +60,64 @@ class Currency(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.code, self.name)
+
+    def say_unit_fulls(self):
+        return (
+            self.fulls_name_genitive,
+            self.fulls_name_denominator,
+            self.fulls_name_dative,
+        )
+
+    def say_unit_halves(self):
+        return (
+            self.halves_name_genitive,
+            self.halves_name_denominator,
+            self.halves_name_dative,
+        )
+
+    def get_exchange_comment(self):
+        if not self.fetch_exchange_rate:
+            return ''
+
+        response = requests.get(
+            'http://api.nbp.pl/api/exchangerates/tables/A/?format=json'
+        )
+        data = response.json()[0]
+        rate = [rate for rate in data['rates'] if rate['code'] == self.code]
+        rate = rate[0]['mid']
+        return (
+            'Kurs waluty: {rate} PLN/{code}; Tabela kursów średnich NBP nr '
+            '{table_no} z dnia {date}'
+        ).format(
+            rate=rate,
+            code=self.code,
+            table_no=data['no'],
+            date=data['effectiveDate'],
+        )
+
+
+class Tax(models.Model):
+    name = models.CharField(
+        _('Name'),
+        max_length=128
+    )
+    display = models.CharField(
+        _('Display'),
+        max_length=128
+    )
+    value = models.DecimalField(
+        _('Value'),
+        max_digits=10,
+        decimal_places=4,
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = _('Tax')
+        verbose_name_plural = _('Taxes')
+
+    def __str__(self):
+        return self.name
 
 
 class InvoiceSeries(models.Model):
@@ -153,6 +240,7 @@ class Invoice(models.Model):
         )
     )
     currency = models.ForeignKey(Currency, null=True)
+    comments = models.TextField(null=True, blank=True)
     payment_method = models.IntegerField(
         _('Payment method'),
         default=PAYMENT_BANK_TRANSFER,
@@ -176,6 +264,9 @@ class Invoice(models.Model):
             self.invoice_number = self.series.generate_number(
                 date=self.date_issued, number=self.number)
 
+        if not self.comments:
+            self.comments = self.currency.get_exchange_comment()
+
         super().save(*args, **kwargs)
 
     def recount_prices(self):
@@ -195,13 +286,13 @@ class Invoice(models.Model):
 
     @property
     def aggregated_taxes(self):
-        taxes = self.invoiceposition_set.values('tax').annotate(
+        taxes = self.invoiceposition_set.values('tax__display').annotate(
                 total_net=Sum('total_net'),
                 total_gross=Sum('total_gross'),
-                vat=(F('total_net') * F('tax')))
+                vat=(F('total_net') * F('tax__value')))
         ret = {}
         for t in taxes:
-            ret[t.get('tax')] = {
+            ret[t.get('tax__display')] = {
                 'vat': t.get('vat').quantize(decimal.Decimal('0.01')),
                 'total_net': t.get('total_net'),
                 'total_gross': t.get('total_gross'),
@@ -267,8 +358,7 @@ class InvoicePosition(models.Model):
     total_gross = models.DecimalField(_('Total gross'), max_digits=32,
                                       decimal_places=2, blank=True, default=0)
 
-    tax = models.DecimalField(_('Tax'), max_digits=10, decimal_places=4,
-                              blank=True)
+    tax = models.ForeignKey(Tax)
     count = models.IntegerField(_('Count'), default=1)
 
     def clean(self):
@@ -280,7 +370,7 @@ class InvoicePosition(models.Model):
 
     def save(self, *args, **kwargs):
         self.total_net = self.money_net * self.count
-        self.total_gross = self.total_net + (self.total_net * self.tax)
+        self.total_gross = self.total_net + (self.total_net * self.tax.value)
         super().save(*args, **kwargs)
 
     def __str__(self):

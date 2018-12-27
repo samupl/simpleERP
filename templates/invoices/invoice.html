@@ -9,10 +9,11 @@
 
     <meta name="pdfkit-page-size" content="A4" />
     <meta name="pdfkit-dpi" content="96" />
-    <meta name="pdfkit-margin-top" content="0px" />
-    <meta name="pdfkit-margin-left" content="0px" />
-    <meta name="pdfkit-margin-right" content="0px" />
-    <meta name="pdfkit-margin-bottom" content="0px" />
+    <meta name="pdfkit-margin-top" content="25mm" />
+    <meta name="pdfkit-margin-left" content="25mm" />
+    <meta name="pdfkit-margin-right" content="25mm" />
+    <meta name="pdfkit-margin-bottom" content="25mm" />
+    <meta name="pdfkit-margin-bottom" content="25mm" />
 
 
     <link rel="stylesheet" href="{% fs_static 'bootstrap/css/bootstrap.css' demo %}">
@@ -47,7 +48,7 @@
     </div>
 
     <div class="col-xs-4">
-        <img id="logo" src="{% fs_static 'invoices/logo.svg' demo %}" class="pull-right outmargin">
+        <img id="logo" src="{% fs_static 'invoices/logo.svg' demo %}" class="pull-right">
     </div>
 </div>
 
@@ -97,7 +98,7 @@
                           <span class="text-muted">/ Country</span>
                         </td>
                         <td class="text-muted">
-                            {{ invoice.issued_by.address_country_verbose }}
+                            {{ invoice.issued_for.address_country_verbose }} ({{ invoice.issued_for.address_country }})
                         </td>
                     </tr>
                 </table>
@@ -156,12 +157,21 @@
                     <td><span class="text-muted">{{ position.count }}</span></td>
                     <td><span class="text-muted">{{ position.money_net }}</span></td>
                     <td><span class="text-muted">{{ position.total_net }}</span></td>
-                    <td class="text-right"><span class="text-muted">{% widthratio position.tax 1 100 %}%</span></td>
+                    <td class="text-right"><span class="text-muted">{{ position.tax.display }}</span></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+</div>
+
+<div class="row container">
+  {% if invoice.comments %}
+    <div class="col-xs-12">
+      <p class="text-uppercase">{% trans 'Uwagi' %} <span class="text-muted">/ Comments</span></p>
+      <p class="text-muted">{{ invoice.comments }}</p>
+    </div>
+  {% endif %}
 </div>
 
 <div id="total" class="row container color-box">
@@ -248,7 +258,7 @@
                 <tbody>
                 {% for key,value in taxes.items %}
                     <tr class="{% cycle 'odd' 'even' %}">
-                        <td>{% widthratio key 1 100 %}%</td>
+                        <td>{{ key }}</td>
                         <td>{{ value.total_net }}</td>
                         <td>{{ value.vat }}</td>
                         <td class="text-right">{{ value.total_gross }}</td>
@@ -272,7 +282,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        {% trans 'Say' %}: {% polish_amount invoice.money_gross %}
+                        {% trans 'Say' %}: {% polish_amount invoice.money_gross invoice.currency.say_unit_fulls invoice.currency.say_unit_halves %}
                     </td>
                 </tr>
             </table>
