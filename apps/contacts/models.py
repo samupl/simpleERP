@@ -90,7 +90,7 @@ class Contact(models.Model):
 
     # Company credentials
     company_name = models.CharField(_('Company name'), max_length=1024, null=True, blank=True)
-    company_nip = models.CharField(_('NIP'), max_length=10, null=True, blank=True)
+    company_nip = models.CharField(_('NIP'), max_length=13, null=True, blank=True)
     company_regon = models.CharField(_('REGON'), max_length=9, null=True, blank=True)
 
     # Common address credentials
