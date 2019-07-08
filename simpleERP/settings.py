@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'apps.invoices',
     'apps.download',
     'apps.ledger',
+    'apps.costs',
 )
 
 MIDDLEWARE_CLASSES = (

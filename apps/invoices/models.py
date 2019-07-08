@@ -299,6 +299,12 @@ class Invoice(models.Model):
         return ret
 
     @property
+    def total_taxes(self):
+        taxes = self.invoiceposition_set.values('tax__display').annotate(
+                vat=(F('total_net') * F('tax__value')))
+        return sum([tax['vat'] for tax in taxes])
+
+    @property
     def issued(self):
         return bool(self.invoice_pdf_file)
 

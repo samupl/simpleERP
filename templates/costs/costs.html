@@ -1,0 +1,62 @@
+{% extends "admin/index.html" %}
+
+{% load i18n %}
+{% comment %}
+[InvoicePosition(
+      invoice=...
+      net='5040.00 USD',
+      gross='5040.00 USD',
+      pln_net=Decimal('18995.256000'),
+      pln_gross=Decimal('18995.256000'),
+      net_tax=Decimal('3609.09864000'),
+      vat_tax=Decimal('0.00'),
+      currency_rate=Decimal('3.7689')),
+{% endcomment %}
+
+
+{% block content %}
+  <div id="content-main">
+    <div class="results">
+      <table id="result_list">
+        <thead>
+          <tr>
+            <th>{% trans 'Invoice number' %}</th>
+            <th>{% trans 'Price net' %}</th>
+            <th>{% trans 'Price gross' %}</th>
+            <th>{% trans 'Price net' %} (PLN)</th>
+            <th>{% trans 'Price gross' %} (PLN)</th>
+            <th>{% trans 'Currency rate' %}</th>
+            <th>{% trans 'VAT tax' %}</th>
+            <th>{% trans 'Income tax' %}</th>
+          </tr>
+        </thead>
+
+        <tbody>d 
+          {% for ip in invoice_positions %}
+            <tr>
+              <td>{{ ip.invoice.invoice_number }}</td>
+              <td>{{ ip.net }}</td>
+              <td>{{ ip.gross }}</td>
+              <td>{{ ip.pln_net|floatformat:2 }}</td>
+              <td>{{ ip.pln_gross|floatformat:2 }}</td>
+              <td>{{ ip.currency_rate|floatformat:4 }}</td>
+              <td>{{ ip.vat_tax|floatformat:2 }} PLN</td>
+              <td>{{ ip.net_tax|floatformat:2 }} PLN</td>
+            </tr>
+          {% endfor %}
+
+          <tr>
+            <td colspan="5"></td>
+            <td style="text-align: right"><b>Total:</b></td>
+            <td><b>{{ total_vat_tax|floatformat:2 }} PLN</b></td>
+            <td><b>{{ total_income_tax|floatformat:2 }} PLN</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block sidebar %}{% endblock %}
+{% block bodyclass %}{% endblock %}
