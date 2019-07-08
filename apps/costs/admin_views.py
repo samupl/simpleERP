@@ -13,7 +13,7 @@ InvoicePosition = namedtuple(
     'invoice net gross pln_net pln_gross net_tax vat_tax currency_rate'
 )
 
-RATE_REGEXP = re.compile(r'Kurs waluty: (\d*\.?\d*) PLN/')
+RATE_REGEXP = re.compile(r'Kurs waluty: (\d*,?\.?\d*) PLN/')
 NETTO_TAX = decimal.Decimal('0.19')
 
 
@@ -51,7 +51,9 @@ def costs(request, year=None, quarter=None):
 
         currency_rate_match = RATE_REGEXP.search(invoice.comments)
         if currency_rate_match:
-            currency_rate = decimal.Decimal(currency_rate_match.groups()[0])
+            currency_rate = decimal.Decimal(
+                currency_rate_match.groups()[0].replace(',', '.')
+            )
 
             pln_net *= currency_rate
             pln_gross *= currency_rate
