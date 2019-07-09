@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-09 10:09+0200\n"
+"POT-Creation-Date: 2019-07-09 10:17+0200\n"
 "PO-Revision-Date: 2016-01-10 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -121,7 +121,15 @@ msgstr "Kontakt"
 msgid "Costs"
 msgstr ""
 
-#: apps/invoices/admin.py:41
+#: apps/invoices/admin.py:26
+msgid "Mark as paid"
+msgstr "Oznacz jako opłacone"
+
+#: apps/invoices/admin.py:33
+msgid "Mark as unpaid"
+msgstr "Oznacz jako nieopłacone"
+
+#: apps/invoices/admin.py:58
 msgid "Issued"
 msgstr "Wystawiona"
 

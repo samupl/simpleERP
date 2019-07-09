@@ -19,6 +19,20 @@ class InvoicePositionInline(admin.TabularInline):
     extra = 1
 
 
+def make_paid(modeladmin, request, queryset):
+    queryset.update(paid=True)
+
+
+make_paid.short_description = _("Mark as paid")
+
+
+def make_unpaid(modeladmin, request, queryset):
+    queryset.update(paid=False)
+
+
+make_unpaid.short_description = _("Mark as unpaid")
+
+
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = [
         'invoice_number', 'issued_for', 'issued_by', 'date_issued',
@@ -30,10 +44,13 @@ class InvoiceAdmin(admin.ModelAdmin):
         'issued_for__company_name', 'issued_for__company_nip',
         'issued_for__company_regon', 'invoice_number',
     ]
-    readonly_fields = ['money_net', 'money_gross', 'issue_link', 'preview_link']
+    readonly_fields = [
+        'money_net', 'money_gross', 'issue_link', 'preview_link', 'paid',
+    ]
     list_filter = ['issued_for__company_name', 'paid']
     inlines = [InvoicePositionInline]
     buttons = []
+    actions = [make_paid, make_unpaid]
 
     def get_issued(self, obj):
         return obj.issued
@@ -42,7 +59,7 @@ class InvoiceAdmin(admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         return super(InvoiceAdmin, self).change_view(request, object_id, form_url, extra_context)
-    
+
 
 class InvoicePositionAdmin(admin.ModelAdmin):
     list_display = ['invoice', 'description', 'count', 'money_net', 'tax', 'total_net', 'total_gross']
