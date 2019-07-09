@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-27 15:08+0100\n"
+"POT-Creation-Date: 2019-07-09 10:09+0200\n"
 "PO-Revision-Date: 2016-01-10 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -117,11 +117,15 @@ msgstr "Kraj"
 msgid "Contact"
 msgstr "Kontakt"
 
-#: apps/invoices/admin.py:33
+#: apps/costs/admin.py:12 apps/costs/admin.py:13
+msgid "Costs"
+msgstr ""
+
+#: apps/invoices/admin.py:41
 msgid "Issued"
 msgstr "Wystawiona"
 
-#: apps/invoices/app_config.py:26 apps/invoices/models.py:344
+#: apps/invoices/app_config.py:26 apps/invoices/models.py:351
 msgid "Invoices"
 msgstr "Faktury"
 
@@ -228,7 +232,7 @@ msgid "If you leave this field blank, it will be filled in automatically."
 msgstr ""
 "Jeśli to pole będzie pozostawione puste, zostanie wypełnione automatycznie."
 
-#: apps/invoices/models.py:200
+#: apps/invoices/models.py:200 templates/costs/costs.html.py:23
 msgid "Invoice number"
 msgstr "Numer faktury"
 
@@ -244,7 +248,8 @@ msgstr "Data wykonania usługi"
 msgid "Payment date"
 msgstr "Termin płatności"
 
-#: apps/invoices/models.py:228 apps/invoices/models.py:353
+#: apps/invoices/models.py:228 apps/invoices/models.py:360
+#: templates/costs/costs.html:24 templates/costs/costs.html.py:26
 #: templates/invoices/invoice.html:139
 msgid "Price net"
 msgstr "Cena netto"
@@ -255,7 +260,8 @@ msgstr ""
 "Koszt zmieni się automatycznie, gdy zmieniona zostanie dowolna pozycja na "
 "fakturze."
 
-#: apps/invoices/models.py:235
+#: apps/invoices/models.py:235 templates/costs/costs.html.py:25
+#: templates/costs/costs.html:27
 msgid "Price gross"
 msgstr "Cena brutto"
 
@@ -263,55 +269,59 @@ msgstr "Cena brutto"
 msgid "Payment method"
 msgstr "Metoda płatności"
 
-#: apps/invoices/models.py:249 apps/invoices/models.py:343
+#: apps/invoices/models.py:249 apps/invoices/models.py:350
 msgid "Invoice"
 msgstr "Faktura"
 
-#: apps/invoices/models.py:311 apps/invoices/models.py:326
+#: apps/invoices/models.py:252
+msgid "Paid"
+msgstr "Opłacona"
+
+#: apps/invoices/models.py:318 apps/invoices/models.py:333
 msgid "Invoice already issued"
 msgstr "Faktura wystawiona"
 
-#: apps/invoices/models.py:313
+#: apps/invoices/models.py:320
 msgid "<a href=\"{}\">Issue this invoice</a>"
 msgstr "<a href=\"{}\">Wystaw fakturę</a>"
 
-#: apps/invoices/models.py:318
+#: apps/invoices/models.py:325
 msgid "Issue"
 msgstr "Wystaw"
 
-#: apps/invoices/models.py:328
+#: apps/invoices/models.py:335
 msgid "<a href=\"{}\" target=\"_blank\">Preview invoice</a>"
 msgstr "<a href=\"{}\" target=\"_blank\">Zobacz podgląd faktury</a>"
 
-#: apps/invoices/models.py:333
+#: apps/invoices/models.py:340
 msgid "Preview"
 msgstr "Podgląd"
 
-#: apps/invoices/models.py:352 apps/ledger/models.py:19
+#: apps/invoices/models.py:359 apps/ledger/models.py:19
 msgid "Description"
 msgstr "Opis"
 
-#: apps/invoices/models.py:355
+#: apps/invoices/models.py:362
 msgid "Total net"
 msgstr "Razem netto"
 
-#: apps/invoices/models.py:357 templates/invoices/invoice.html.py:284
+#: apps/invoices/models.py:364 templates/invoices/invoice.html.py:284
 msgid "Total gross"
 msgstr "Razem brutto"
 
-#: apps/invoices/models.py:361 templates/invoices/invoice.html.py:135
+#: apps/invoices/models.py:368 templates/invoices/invoice.html.py:135
 msgid "Count"
 msgstr "Ilość"
 
-#: apps/invoices/models.py:366
+#: apps/invoices/models.py:373
 msgid "This invoice is already issued, you cannot modify its positions now."
 msgstr "Ta faktura została już wystawiona, nie można edytować jej pozycji."
 
-#: apps/invoices/models.py:379
+#: apps/invoices/models.py:386
 msgid "Invoice position"
 msgstr "Pozycja na fakturze"
 
-#: apps/invoices/models.py:380
+#: apps/invoices/models.py:387
 msgid "Invoice positions"
 msgstr "Pozycje na fakturze"
 
@@ -387,13 +397,19 @@ msgstr "Administracja SimpleERP"
 msgid "SimpleERP administration"
 msgstr "Administracja SimpleERP"
 
-#: templates/frontend/menu.html:5
-msgid "Home"
-msgstr "Strona główna"
+#: templates/costs/costs.html:28
+#, fuzzy
+#| msgid "Currency"
+msgid "Currency rate"
+msgstr "Waluta"
 
-#: templates/frontend/menu.html:8
-msgid "Example View"
-msgstr "Przykładowy widok"
+#: templates/costs/costs.html:29
+msgid "VAT tax"
+msgstr "Podatek VAT"
+
+#: templates/costs/costs.html:30
+msgid "Income tax"
+msgstr "Podatek dochodowy"
 
 #: templates/invoices/invoice.html:32
 msgid "Issue place"
@@ -464,18 +480,3 @@ msgstr "Brutto"
 #: templates/invoices/invoice.html:294
 msgid "Say"
 msgstr "Słownie"
-
-#~ msgid "Issuer"
-#~ msgstr "Sprzedawca"
-
-#~ msgid "Date and issue place"
-#~ msgstr "Data i miejsce wystawienia"
-
-#~ msgid "Information"
-#~ msgstr "Informacje"
-
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgid "Total"
-#~ msgstr "Łącznie"

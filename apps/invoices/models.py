@@ -249,6 +249,7 @@ class Invoice(models.Model):
         _('Invoice'), null=True, blank=True,
         upload_to=generate_filename
     )
+    paid = models.BooleanField(_('Paid'), default=False)
 
     def save(self, *args, **kwargs):
         if not self.date_payment:

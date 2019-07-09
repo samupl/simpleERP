@@ -20,10 +20,18 @@ class InvoicePositionInline(admin.TabularInline):
 
 
 class InvoiceAdmin(admin.ModelAdmin):
-    list_display = ['invoice_number', 'issued_for', 'issued_by', 'date_issued', 'date_delivered', 'date_payment',
-                    'money_net', 'money_gross', 'get_issued']
-    search_fields = ['issued_for']
+    list_display = [
+        'invoice_number', 'issued_for', 'issued_by', 'date_issued',
+        'date_delivered', 'date_payment', 'money_net', 'money_gross',
+        'get_issued', 'paid',
+    ]
+    search_fields = [
+        'issued_for__person_first_name', 'issued_for__person_last_name',
+        'issued_for__company_name', 'issued_for__company_nip',
+        'issued_for__company_regon', 'invoice_number',
+    ]
     readonly_fields = ['money_net', 'money_gross', 'issue_link', 'preview_link']
+    list_filter = ['issued_for__company_name', 'paid']
     inlines = [InvoicePositionInline]
     buttons = []
 
