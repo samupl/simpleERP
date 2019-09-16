@@ -41,6 +41,7 @@ def costs(request, year=None, quarter=None):
         date_issued__month__in=months,
     ).exclude(
         invoice_pdf_file='',
+        invoice_type=Invoice.TYPE_PROFORMA,
     )
 
     invoice_positions = []
