@@ -55,7 +55,10 @@
 <div class="row" id="user-data">
     <div class="col-xs-8">
         <div class="container">
-            <h1>{% trans 'VAT Invoice' %} <small>{% trans 'no' %} {{ invoice.invoice_number }}</small></h1>
+            <h1>
+              {{ invoice.invoice_name }}
+              <small>{% trans 'no' %} {{ invoice.invoice_number }}</small>
+            </h1>
 
             <div class="customer">
                 <table>

@@ -35,9 +35,9 @@ make_unpaid.short_description = _("Mark as unpaid")
 
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = [
-        'invoice_number', 'issued_for', 'issued_by', 'date_issued',
-        'date_delivered', 'date_payment', 'money_net', 'money_gross',
-        'get_issued', 'paid',
+        'invoice_number', 'invoice_type', 'issued_for', 'issued_by',
+        'date_issued', 'date_delivered', 'date_payment', 'money_net',
+        'money_gross', 'get_issued', 'paid',
     ]
     search_fields = [
         'issued_for__person_first_name', 'issued_for__person_last_name',

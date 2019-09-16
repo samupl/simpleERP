@@ -178,6 +178,18 @@ class Invoice(models.Model):
         )
         return filename
 
+    TYPE_INVOICE = 'invoice'
+    TYPE_INVOICE_INSTALMENT = 'invoice-instalment'
+    TYPE_INVOICE_FINAL = 'invoice-final'
+    TYPE_PROFORMA = 'invoice-proforma'
+
+    TYPES = {
+        TYPE_INVOICE: _('VAT Invoice'),
+        TYPE_INVOICE_INSTALMENT: _('Instalment invoice'),
+        TYPE_INVOICE_FINAL: _('Final invoice'),
+        TYPE_PROFORMA: _('Request for payment'),
+    }
+
     PAYMENT_DATE_DEFAULT_DAYS = 14
     PAYMENT_BANK_TRANSFER = 0
     PAYMENT_PAYPAL = 1
@@ -188,7 +200,9 @@ class Invoice(models.Model):
     }
 
     series = models.ForeignKey(InvoiceSeries, null=True, blank=True)
-
+    invoice_type = models.CharField(
+        _('Invoice type'), max_length=64, choices=list(TYPES.items())
+    )
     number = models.IntegerField(
         _('Invoice internal number'), blank=True,
         help_text=_(
@@ -342,6 +356,10 @@ class Invoice(models.Model):
     @property
     def payment_method_verbose(self):
         return self.PAYMENTS[self.payment_method]
+
+    @property
+    def invoice_name(self):
+        return self.TYPES[self.invoice_type]
 
     def __str__(self):
         return self.invoice_number
