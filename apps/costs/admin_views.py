@@ -3,9 +3,9 @@ import decimal
 import re
 from collections import namedtuple
 
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from apps.costs.forms import DateSelectionForm
 from apps.invoices.models import Invoice
 
 InvoicePosition = namedtuple(
@@ -33,6 +33,21 @@ def costs(request, year=None, quarter=None):
 
     if quarter is None:
         quarter = (now.month - 1) // 3
+
+    if request.method == 'POST':
+        form = DateSelectionForm(request.POST)
+        if form.is_valid():
+            return redirect(
+                to='/admin/costs/dummymodel/costs/{year}/{quarter}'.format(
+                    year=form.cleaned_data['year'],
+                    quarter=form.cleaned_data['quarter'],
+                ),
+            )
+    else:
+        form = DateSelectionForm(initial={
+            'year': year,
+            'quarter': quarter,
+        })
 
     months = quarters[int(quarter)]
 
@@ -78,6 +93,7 @@ def costs(request, year=None, quarter=None):
 
     total_vat_tax = sum([ip.vat_tax for ip in invoice_positions])
     total_income_tax = sum([ip.net_tax for ip in invoice_positions])
+
     return render(
         request,
         'costs/costs.html',
@@ -85,5 +101,6 @@ def costs(request, year=None, quarter=None):
             'invoice_positions': invoice_positions,
             'total_vat_tax': total_vat_tax,
             'total_income_tax': total_income_tax,
+            'form': form,
         }
     )

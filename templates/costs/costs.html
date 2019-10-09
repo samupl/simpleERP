@@ -16,6 +16,16 @@
 
 {% block content %}
   <div id="content-main">
+    <div id="changelist">
+      <div class="actions">
+        <form method="POST">
+          {{ form }}
+          <button type="submit">Go</button>
+          {% csrf_token %}
+        </form>
+      </div>
+    </div>
+
     <div class="results">
       <table id="result_list">
         <thead>
