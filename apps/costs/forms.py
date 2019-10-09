@@ -13,8 +13,6 @@ class DateSelectionForm(forms.Form):
         now = datetime.datetime.now()
         years = [now.year - i for i in range(5)]
         quarters = [0, 1, 2, 3]
+        quarters_labels = [1, 2, 3, 4]
         self.fields['year'].choices = [(year, year) for year in years]
-        self.fields['quarter'].choices = [
-            (quarter, quarter)
-            for quarter in quarters
-        ]
+        self.fields['quarter'].choices = zip(quarters, quarters_labels)
