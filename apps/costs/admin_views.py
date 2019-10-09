@@ -3,6 +3,7 @@ import decimal
 import re
 from collections import namedtuple
 
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from apps.costs.forms import DateSelectionForm
@@ -55,8 +56,8 @@ def costs(request, year=None, quarter=None):
         date_issued__year=year,
         date_issued__month__in=months,
     ).exclude(
-        invoice_pdf_file='',
-        invoice_type=Invoice.TYPE_PROFORMA,
+        Q(invoice_pdf_file='') |
+        Q(invoice_type=Invoice.TYPE_PROFORMA)
     )
 
     invoice_positions = []
