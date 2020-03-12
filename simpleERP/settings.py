@@ -98,6 +98,7 @@ DATABASES = {
         'USER': config_db.get('database', 'user'),
         'PASSWORD': config_db.get('database', 'password'),
         'HOST': config_db.get('database', 'host'),
+        'PORT': config_db.get('database', 'port'),
         'TEST': {
             'CHARSET': "utf8",
             'COLLATION': "utf8_general_ci",

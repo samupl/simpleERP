@@ -300,13 +300,23 @@ class Invoice(models.Model):
 
     @property
     def aggregated_taxes(self):
-        taxes = self.invoiceposition_set.values('tax__display').annotate(
-                total_net=Sum('total_net'),
-                total_gross=Sum('total_gross'),
-                vat=(F('total_net') * F('tax__value')))
+        positions = self.invoiceposition_set.all()
+        taxes = {}
+        for position in positions:
+            tax = taxes.setdefault(
+                position.tax.display,
+                {
+                    'total_net': decimal.Decimal(0),
+                    'total_gross': decimal.Decimal(0),
+                    'vat': decimal.Decimal(0),
+                }
+            )
+            tax['total_net'] += position.total_net
+            tax['total_gross'] += position.total_gross
+            tax['vat'] += position.total_net * position.tax.value
         ret = {}
-        for t in taxes:
-            ret[t.get('tax__display')] = {
+        for tax, t in taxes.items():
+            ret[tax] = {
                 'vat': t.get('vat').quantize(decimal.Decimal('0.01')),
                 'total_net': t.get('total_net'),
                 'total_gross': t.get('total_gross'),
