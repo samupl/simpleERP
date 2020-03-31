@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Max, Sum, F
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -78,9 +79,19 @@ class Currency(models.Model):
         if not self.fetch_exchange_rate:
             return ''
 
+        now = timezone.now() - datetime.timedelta(days=1)
+        while now.weekday() not in [0, 1, 2, 3, 4]:
+            now = now - datetime.timedelta(days=1)
+
+        effective_date = now.strftime('%Y-%m-%d')
         response = requests.get(
-            'http://api.nbp.pl/api/exchangerates/tables/A/?format=json'
+            (
+                'http://api.nbp.pl/api/exchangerates/tables/A/{}?format=json'
+            ).format(
+                effective_date
+            )
         )
+
         data = response.json()[0]
         rate = [rate for rate in data['rates'] if rate['code'] == self.code]
         rate = rate[0]['mid']
