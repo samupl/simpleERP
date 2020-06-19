@@ -182,10 +182,11 @@ class Invoice(models.Model):
         if not series_prefix:
             return 'invoice_{}.pdf'.format(self.pk)
 
-        filename = '{series_prefix}_{month:>02}_{year}.pdf'.format(
+        filename = '{series_prefix}_{month:>02}_{year}__{number}.pdf'.format(
             series_prefix=series_prefix,
             month=self.date_issued.month,
-            year=self.date_issued.year
+            year=self.date_issued.year,
+            number=self.number,
         )
         return filename
 
