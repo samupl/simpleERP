@@ -1,5 +1,7 @@
 from django.core.management import BaseCommand
 
+from apps.invoices.models import Invoice
+
 
 class Command(BaseCommand):
 
@@ -7,5 +9,6 @@ class Command(BaseCommand):
         parser.add_argument('invoice_id', type=int)
 
     def handle(self, *args, **options):
-        pass
+        invoice = Invoice.objects.get(options['invoice_id'])
+        invoice.render_pdf()
 

@@ -20,7 +20,6 @@ class DummyModelAdmin(admin.ModelAdmin):
     def get_urls(self):
         view_name = '{}_{}_changelist'.format(
             self.model._meta.app_label, self.model._meta.model_name)
-        print(view_name)
         return [
             url(r'costs/$', costs, name=view_name),
             url(r'costs/(\d+)/(\d+)', costs, name=view_name),
