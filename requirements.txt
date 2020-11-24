@@ -6,3 +6,4 @@ python-slownie==1.0
 wheel==0.24.0
 django-sslify==0.2.7
 requests==2.21.0
+sentry-sdk==0.19.4

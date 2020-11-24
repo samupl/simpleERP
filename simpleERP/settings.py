@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 import os
 import configparser
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,11 +21,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 config_db = configparser.ConfigParser()
 config_db.read(os.path.join(BASE_DIR, 'conf', 'database.conf'))
 
+config_security = configparser.ConfigParser()
+config_security.read(os.path.join(BASE_DIR, 'conf', 'security.conf'))
+
+config_sentry = configparser.ConfigParser()
+config_sentry.read(os.path.join(BASE_DIR, 'conf', 'sentry.conf'))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'da44gn_oa86s)6l0v7mc9(z_)y2&vb&&%i1$5+6$ya+4-ou38k'
+SECRET_KEY = config_security.get('security', 'secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -142,3 +150,16 @@ MEDIA_URL = '/download/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Sentry
+# https://sentry.io/samupl/erp/getting-started/python-django/
+
+sentry_sdk.init(
+    dsn=config_sentry.get('sentry', 'dsn'),
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
