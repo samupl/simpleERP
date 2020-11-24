@@ -189,6 +189,7 @@ class Invoice(models.Model):
         'page-width': '212mm',
         'encoding': "UTF-8",
         'dpi': '300',
+        'enable-local-file-access': False,
     }
 
     # Defined at the top, because one of the fields uses this method
