@@ -1,19 +1,22 @@
 import datetime
-
 import decimal
+import os
 
 import django.utils.timezone
+import pdfkit
 import requests
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import Max, Sum, F
+from django.db.models import F, Max
 from django.template.loader import render_to_string
 from django.utils import timezone
+from django.utils import translation
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from apps.contacts.models import Company, Contact, CompanyBankAccount
+from apps.contacts.models import Company, CompanyBankAccount, Contact
 
 
 class Currency(models.Model):
@@ -176,6 +179,18 @@ class InvoiceSeries(models.Model):
 
 
 class Invoice(models.Model):
+
+    pdfkit_options = {
+        'margin-top': '10mm',
+        'margin-right': '10mm',
+        'margin-bottom': '10mm',
+        'margin-left': '10mm',
+        'page-height': '297mm',
+        'page-width': '212mm',
+        'encoding': "UTF-8",
+        'dpi': '300',
+    }
+
     # Defined at the top, because one of the fields uses this method
     def generate_filename(self, *_):
         series_prefix = self.series.pattern.split('/')[0]
@@ -385,6 +400,17 @@ class Invoice(models.Model):
 
     def __str__(self):
         return self.invoice_number
+
+    def render_pdf(self):
+        with translation.override('pl'):
+            file_name = self.generate_filename()
+            pdfkit.from_string(
+                self.rendered_html,
+                os.path.join(settings.MEDIA_ROOT, file_name),
+                options=self.pdfkit_options
+            )
+            self.invoice_pdf_file = file_name
+            self.save()
 
     class Meta:
         verbose_name = _('Invoice')

@@ -43,12 +43,5 @@ def render_invoice_pdf(request, invoice_id):
 def issue(request, invoice_id):
     with translation.override('pl'):
         invoice = get_object_or_404(Invoice, pk=invoice_id)
-        file_name = invoice.generate_filename()
-        pdfkit.from_string(
-            invoice.rendered_html,
-            os.path.join(settings.MEDIA_ROOT, file_name),
-            options=pdfkit_options
-        )
-        invoice.invoice_pdf_file = file_name
-        invoice.save()
+        invoice.render_pdf()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
